@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -9,6 +11,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _obscureText = true;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +41,7 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: TextField(
+                controller: emailController,
                 decoration: InputDecoration(
                   hintText: "E-mail",
                   filled: true,
@@ -56,6 +61,7 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: TextField(
                 obscureText: _obscureText,
+                controller: passwordController,
                 decoration: InputDecoration(
                   hintText: "Password",
                   filled: true,
@@ -79,7 +85,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-
             const SizedBox(height: 10),
 
             // Forgot
@@ -103,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: loginUser,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.indigo,
                     shape: RoundedRectangleBorder(
@@ -164,4 +169,23 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+  Future<void> loginUser() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Login Successful")),
+      );
+
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.message ?? "Login failed")),
+      );
+    }
+  }
+
+
 }
