@@ -46,3 +46,21 @@ class SettingsScreen extends StatelessWidget {
       ),
     );
   }
+  Widget _buildSettingsItem(String title) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 15),
+      decoration: BoxDecoration(
+        border: Border.all(color: const Color(0xFFB2DFDB)), // Light teal border
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: ListTile(
+        title: Text(
+          title,
+          style: const TextStyle(fontSize: 16, color: Colors.black87),
+        ),
+        trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.black),
+        onTap: () {},
+      ),
+    );
+  }
+}
