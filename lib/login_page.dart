@@ -1,6 +1,9 @@
+import 'package:fixmate/signUp_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'home_page.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -155,11 +158,22 @@ class _LoginPageState extends State<LoginPage> {
             // Sign up
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text("Don’t have an account ? "),
-                Text(
-                  "sign up",
-                  style: TextStyle(color: Colors.indigo),
+              children: [
+                const Text("Don’t have an account ? "),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SignupPage()),
+                    );
+                  },
+                  child: const Text(
+                    "sign up",
+                    style: TextStyle(
+                      color: Colors.indigo,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -177,10 +191,13 @@ class _LoginPageState extends State<LoginPage> {
         password: passwordController.text.trim(),
       );
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Login Successful")),
-      );
-
+      // If successful, navigate to Home
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+        );
+      }
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(e.message ?? "Login failed")),
