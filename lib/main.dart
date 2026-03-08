@@ -1,9 +1,5 @@
-import 'package:fixmate/signUp_page.dart';
 import 'package:fixmate/splash_screen.dart';
-import 'package:fixmate/user_selection.dart';
 import 'package:flutter/material.dart';
-import 'login_page.dart';
-import 'onboard_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 

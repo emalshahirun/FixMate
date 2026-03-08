@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'WorkerListScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -49,50 +50,52 @@ class HomeScreen extends StatelessWidget {
               ),
               itemCount: categories.length,
               itemBuilder: (context, index) {
-                return _buildCategoryItem(categories[index]);
+                return _buildCategoryItem(context, categories[index]);
               },
             ),
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey,
-        currentIndex: 0,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.grid_view_rounded), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.assignment_outlined), label: 'Bookings'),
-          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Profile'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings_outlined), label: 'Settings'),
-        ],
-      ),
     );
   }
 
-  Widget _buildCategoryItem(CategoryModel category) {
-    return Column(
-      children: [
-        Expanded(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(4),
-            child: Image.asset(
-              category.image,
-              fit: BoxFit.cover,
+  Widget _buildCategoryItem(BuildContext context, CategoryModel category) {
+    return GestureDetector(
+      onTap: () {
+        // Navigate to the Worker List Screen when clicked
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => WorkerListScreen(categoryTitle: category.title),
+          ),
+        );
+      },
+      child: Column(
+        children: [
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.white,
+                boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 4)],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  category.image,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
           ),
-        ),
-        const SizedBox(height: 5),
-        Text(
-          category.title,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 12,
-            letterSpacing: 0.5,
+          const SizedBox(height: 5),
+          Text(
+            category.title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 11),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
