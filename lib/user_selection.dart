@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'login_page.dart';
 
 class UserSelectionScreen extends StatelessWidget {
   const UserSelectionScreen({super.key});
@@ -17,14 +18,29 @@ class UserSelectionScreen extends StatelessWidget {
               _buildSelectionOption(
                 imagePath: 'assets/worker.png',
                 label: 'Worker',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPage(userType: "Worker"),
+                    ),
+                  );
+                },
               ),
+
               const SizedBox(height: 60),
-              // Customer Section
+
               _buildSelectionOption(
                 imagePath: 'assets/customer.png',
                 label: 'Customer',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPage(userType: "Customer"),
+                    ),
+                  );
+                },
               ),
             ],
           ),

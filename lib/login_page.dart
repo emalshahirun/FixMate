@@ -2,10 +2,10 @@ import 'package:fixmate/signUp_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'MainNavigation.dart';
-import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  final String userType;
+  const LoginPage({super.key, required this.userType});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -19,6 +19,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("${widget.userType} Login"),
+        centerTitle: true,
+      ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
@@ -193,7 +197,9 @@ class _LoginPageState extends State<LoginPage> {
       if (mounted) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const MainNavigation()),
+          MaterialPageRoute(
+            builder: (context) => MainNavigation(userType: widget.userType),
+          ),
         );
       }
     } on FirebaseAuthException catch (e) {

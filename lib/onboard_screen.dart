@@ -1,3 +1,4 @@
+import 'package:fixmate/user_selection.dart';
 import 'package:flutter/material.dart';
 import 'login_page.dart';
 
@@ -49,7 +50,7 @@ class OnboardingScreen extends StatelessWidget {
                     // Navigate to Login and remove Onboarding from the stack
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const LoginPage()),
+                      MaterialPageRoute(builder: (context) => const UserSelectionScreen()),
                     );
                   },
                   style: ElevatedButton.styleFrom(

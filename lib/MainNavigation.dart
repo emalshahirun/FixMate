@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'BookingScreen.dart';
+import 'Profile.dart';
+import 'WorkerHome.dart';
 import 'home_page.dart';
 
 class MainNavigation extends StatefulWidget {
-  const MainNavigation({super.key});
+
+  final String userType;
+
+  const MainNavigation({super.key, required this.userType});
 
   @override
   State<MainNavigation> createState() => _MainNavigationState();
@@ -12,13 +17,28 @@ class MainNavigation extends StatefulWidget {
 class _MainNavigationState extends State<MainNavigation> {
 
   int _selectedIndex = 0;
+  late List<Widget> _screens;
 
-  final List<Widget> _screens = [
-    const HomeScreen(),
-    const BookingsScreen(),
-    const Center(child: Text("Profile Screen")),
-    const Center(child: Text("Settings Screen")),
-  ];
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.userType == "Worker") {
+      _screens = [
+        const WorkerHomeScreen(),
+        const Center(child: Text("Jobs")),
+        const Center(child: Text("Profile")),
+        const Center(child: Text("Settings")),
+      ];
+    } else {
+      _screens = [
+        const CustomerHomeScreen(),
+        const BookingsScreen(),
+        const ProfilePage(),
+        const Center(child: Text("Settings")),
+      ];
+    }
+  }
 
   void _onItemTapped(int index){
     setState(() {
@@ -30,7 +50,6 @@ class _MainNavigationState extends State<MainNavigation> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-
       body: _screens[_selectedIndex],
 
       bottomNavigationBar: BottomNavigationBar(
