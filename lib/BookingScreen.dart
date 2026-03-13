@@ -1,5 +1,5 @@
+import 'package:fixmate/worker_tracking.dart';
 import 'package:flutter/material.dart';
-import 'tracking_map_screen.dart';
 
 class BookingsScreen extends StatelessWidget {
   const BookingsScreen({super.key});
@@ -155,7 +155,7 @@ class BookingsScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                          const TrackingMapScreen(bookingId: "booking1"),
+                          const WorkerTrackingPage(bookingId: "booking1"),
                         ),
                       );
                     }
