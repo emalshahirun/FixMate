@@ -11,7 +11,7 @@ class TrackingMapScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Technician Tracking")),
+      appBar: AppBar(title: const Text("Tracking")),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('bookings')
@@ -37,9 +37,7 @@ class TrackingMapScreen extends StatelessWidget {
 
               TileLayer(
                 urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-
                 userAgentPackageName: "com.example.fixmate",
-
               ),
 
               MarkerLayer(
