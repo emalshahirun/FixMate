@@ -1,4 +1,4 @@
-import 'package:fixmate/worker_tracking.dart';
+import 'package:fixmate/customer_tracking.dart';
 import 'package:flutter/material.dart';
 
 class BookingsScreen extends StatelessWidget {
@@ -155,7 +155,7 @@ class BookingsScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                          const WorkerTrackingPage(bookingId: "booking1"),
+                          const CustomerTrackingPage(bookingId: "booking1"),
                         ),
                       );
                     }

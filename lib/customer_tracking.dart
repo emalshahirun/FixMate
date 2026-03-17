@@ -1,11 +1,15 @@
+import 'package:fixmate/userCallPage.dart';
+import 'package:fixmate/userChatPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class WorkerTrackingPage extends StatelessWidget {
+class CustomerTrackingPage extends StatelessWidget {
   final String bookingId;
-  const WorkerTrackingPage({Key? key, required this.bookingId}) : super(key: key);
+
+  const CustomerTrackingPage({Key? key, required this.bookingId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,8 @@ class WorkerTrackingPage extends StatelessWidget {
             .doc(bookingId)
             .snapshots(),
         builder: (context, snapshot) {
-          if (!snapshot.hasData) return const Center(child: CircularProgressIndicator());
+          if (!snapshot.hasData)
+            return const Center(child: CircularProgressIndicator());
 
           var data = snapshot.data!.data() as Map<String, dynamic>;
 
@@ -54,15 +59,18 @@ class WorkerTrackingPage extends StatelessWidget {
                         point: userPos,
                         width: 40,
                         height: 40,
-                        child: const Icon(Icons.location_on, color: Colors.red, size: 40),
+                        child: const Icon(
+                            Icons.location_on, color: Colors.red, size: 40),
                       ),
                       Marker(
                         point: workerPos,
                         width: 80,
                         height: 80,
                         child: Transform.rotate(
-                          angle: 0.5, // You can calculate actual heading from Firebase if needed
-                          child: const Icon(Icons.directions_car, color: Colors.green, size: 40),
+                          angle: 0.5,
+                          // You can calculate actual heading from Firebase if needed
+                          child: const Icon(Icons.directions_car, color: Colors
+                              .green, size: 40),
                         ),
                       ),
                     ],
@@ -72,9 +80,21 @@ class WorkerTrackingPage extends StatelessWidget {
 
               // --- UI Overlays (Header & Bottom Panel) ---
               _buildHeader(),
+              // Place this inside your Stack's children list
+              Positioned(
+                top: 50,
+                left: 20,
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: IconButton(
+                    icon: const Icon(Icons.arrow_back, color: Colors.black),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ),
+              ),
               Align(
                 alignment: Alignment.bottomCenter,
-                child: _buildBottomUI(data),
+                child: _buildBottomUI(context, data),
               ),
             ],
           );
@@ -95,8 +115,10 @@ class WorkerTrackingPage extends StatelessWidget {
           // FixMate Logo Placeholder
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(8)),
-            child: const Text("FixMate", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+            decoration: BoxDecoration(
+                color: Colors.blue, borderRadius: BorderRadius.circular(8)),
+            child: const Text("FixMate", style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold)),
           ),
           const Row(
             children: [
@@ -110,7 +132,8 @@ class WorkerTrackingPage extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomUI(Map<String, dynamic> data) {
+  Widget _buildBottomUI(BuildContext context, Map<String, dynamic> data) {
+    // Added context here
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: const BoxDecoration(
@@ -122,7 +145,8 @@ class WorkerTrackingPage extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text("Your worker is coming in ${data['eta'] ?? '--'}",
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              style: const TextStyle(
+                  fontSize: 16, fontWeight: FontWeight.bold)),
           const SizedBox(height: 15),
           Row(
             children: [
@@ -131,8 +155,10 @@ class WorkerTrackingPage extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(data['worker_name'] ?? "Saman", style: const TextStyle(fontWeight: FontWeight.bold)),
-                  const Text("4.9 (531 reviews)", style: TextStyle(color: Colors.grey, fontSize: 12)),
+                  Text(data['worker_name'] ?? "Saman",
+                      style: const TextStyle(fontWeight: FontWeight.bold)),
+                  const Text("4.9 (531 reviews)",
+                      style: TextStyle(color: Colors.grey, fontSize: 12)),
                 ],
               ),
             ],
@@ -142,14 +168,15 @@ class WorkerTrackingPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text("Payment method"),
-              Text("LKR ${data['price']}", style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Text("LKR ${data['price'] ?? '0.00'}", style: const TextStyle(
+                  fontSize: 20, fontWeight: FontWeight.bold)),
             ],
           ),
           const SizedBox(height: 10),
-          // Credit Card View
           Container(
             padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(color: Colors.teal.withOpacity(0.05), borderRadius: BorderRadius.circular(8)),
+            decoration: BoxDecoration(color: Colors.teal.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(8)),
             child: Row(
               children: const [
                 Icon(Icons.credit_card, color: Colors.indigo),
@@ -163,17 +190,36 @@ class WorkerTrackingPage extends StatelessWidget {
           const SizedBox(height: 20),
           Row(
             children: [
-              Expanded(child: OutlinedButton(onPressed: () {}, child: const Text("Call"))),
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const CallPage()),
+                    );
+                  },
+                  child: const Text("Call"),
+                ),
+              ),
               const SizedBox(width: 10),
               Expanded(
                 child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF1A237E)),
-                    onPressed: () {},
-                    child: const Text("Message", style: TextStyle(color: Colors.white))
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF1A237E),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ChatScreen()),
+                    );
+                  },
+                  child: const Text(
+                      "Message", style: TextStyle(color: Colors.white)),
                 ),
               ),
             ],
-          ),
+          )
         ],
       ),
     );
