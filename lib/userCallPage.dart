@@ -7,39 +7,20 @@ class CallPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: const Icon(Icons.menu, color: Colors.black),
+        title: Image.asset('assets/logo.png', height: 40),
+        centerTitle: true,
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.storefront_outlined, color: Colors.black)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black)),
+        ],
+      ),
       body: SafeArea(
         child: Stack(
           children: [
-            // --- 1. Header Row ---
-            Positioned(
-              top: 10,
-              left: 20,
-              right: 20,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Icon(Icons.menu, size: 28),
-                  // FixMate Logo
-                  Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Icon(Icons.person, color: Colors.white), // Placeholder for logo
-                  ),
-                  const Row(
-                    children: [
-                      Icon(Icons.storefront_outlined, size: 26),
-                      SizedBox(width: 20),
-                      Icon(Icons.shopping_cart_outlined, size: 26),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-
             // --- 2. Center Content (Profile) ---
             Center(
               child: Column(
@@ -49,7 +30,7 @@ class CallPage extends StatelessWidget {
                     radius: 70,
                     backgroundImage: AssetImage('assets/man2.png'),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 50),
                   const Text(
                     "Saman karunaratne",
                     style: TextStyle(
@@ -58,7 +39,7 @@ class CallPage extends StatelessWidget {
                       color: Colors.black54,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 10),
                   const Text(
                     "Calling....",
                     style: TextStyle(

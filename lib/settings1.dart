@@ -10,11 +10,13 @@ class SettingsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: const Text(
-          "Settings",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
+        leading: const Icon(Icons.menu, color: Colors.black),
+        title: Image.asset('assets/logo.png', height: 40),
         centerTitle: true,
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.storefront_outlined, color: Colors.black)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black)),
+        ],
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),

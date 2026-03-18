@@ -12,7 +12,7 @@ class CustomerHomeScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: const Icon(Icons.menu, color: Colors.black),
-        title: Image.asset('assets/logo.png', height: 40), // Replace with your FixMate logo
+        title: Image.asset('assets/logo.png', height: 40),
         centerTitle: true,
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.storefront_outlined, color: Colors.black)),
