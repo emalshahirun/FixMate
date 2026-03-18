@@ -1,6 +1,5 @@
 import 'package:fixmate/user_selection.dart';
 import 'package:flutter/material.dart';
-import 'login_page.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});

@@ -65,10 +65,9 @@ class WorkerHomeScreen extends StatelessWidget {
                         ),
                       ),
 
-                      CircleAvatar(
+                      const CircleAvatar(
                         radius: 40,
-                        backgroundImage:
-                        NetworkImage('https://via.placeholder.com/150'),
+                        backgroundImage: AssetImage('assets/man.webp'),
                       ),
                     ],
                   ),
@@ -266,8 +265,8 @@ class WorkerHomeScreen extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) =>
-            const TrackingMapScreen(
-              bookingId: "booking1",
+            const MapScreen(
+              bookingId: "booking2",
             ),
           ),
         );

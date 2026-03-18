@@ -46,8 +46,8 @@ class CallPage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const CircleAvatar(
-                    radius: 80,
-                    backgroundImage: NetworkImage('https://via.placeholder.com/150'), // Replace with Saman's image
+                    radius: 70,
+                    backgroundImage: AssetImage('assets/man2.png'),
                   ),
                   const SizedBox(height: 20),
                   const Text(

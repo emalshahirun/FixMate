@@ -1,3 +1,5 @@
+import 'package:fixmate/settings1.dart';
+import 'package:fixmate/workerBookingPage.dart';
 import 'package:flutter/material.dart';
 import 'BookingScreen.dart';
 import 'Profile.dart';
@@ -26,16 +28,16 @@ class _MainNavigationState extends State<MainNavigation> {
     if (widget.userType == "Worker") {
       _screens = [
         const WorkerHomeScreen(),
-        const Center(child: Text("Jobs")),
-        const Center(child: Text("Profile")),
-        const Center(child: Text("Settings")),
+        const WorkerBookingsPage(),
+        const ProfilePage(),
+        const SettingsScreen(),
       ];
     } else {
       _screens = [
         const CustomerHomeScreen(),
         const BookingsScreen(),
         const ProfilePage(),
-        const Center(child: Text("Settings")),
+        const SettingsScreen(),
       ];
     }
   }

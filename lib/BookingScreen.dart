@@ -1,5 +1,5 @@
-import 'package:fixmate/customer_tracking.dart';
 import 'package:flutter/material.dart';
+import 'package:fixmate/customer_tracking.dart';
 
 class BookingsScreen extends StatelessWidget {
   const BookingsScreen({super.key});
@@ -12,8 +12,10 @@ class BookingsScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: const Icon(Icons.menu, color: Colors.black),
-        title: const Text("FixMate",
-            style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+        title: const Text(
+          "FixMate",
+          style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         actions: const [
           Icon(Icons.storefront_outlined, color: Colors.black),
@@ -26,7 +28,7 @@ class BookingsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header
+            // Header Section
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(20),
@@ -45,8 +47,7 @@ class BookingsScreen extends StatelessWidget {
                   SizedBox(height: 4),
                   Row(
                     children: [
-                      Icon(Icons.access_time,
-                          color: Colors.white70, size: 16),
+                      Icon(Icons.access_time, color: Colors.white70, size: 16),
                       SizedBox(width: 5),
                       Text("ETA: 15 min",
                           style: TextStyle(color: Colors.white70)),
@@ -62,6 +63,7 @@ class BookingsScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             ),
 
+            // Horizontal List for Active Bookings
             SizedBox(
               height: 200,
               child: ListView(
@@ -69,15 +71,24 @@ class BookingsScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 children: [
                   _buildActiveCard(
-                      context,
-                      "Plumbing",
-                      "Faucet Leaky",
-                      "Mark Johnson",
-                      "Track Plumber",
-                      Colors.blue),
-                  _buildActiveCard(context, "Electrical", "Install Fan",
-                      "Sarah Lee", "Reschedule", Colors.blue,
-                      hasCancel: true),
+                    context,
+                    "Plumbing",
+                    "Faucet Leaky",
+                    "Mark Johnson",
+                    "Track Plumber",
+                    Colors.blue,
+                    "https://i.pravatar.cc/150?u=mark", // Sample Image
+                  ),
+                  _buildActiveCard(
+                    context,
+                    "Electrical",
+                    "Install Fan",
+                    "Sarah Lee",
+                    "Reschedule",
+                    Colors.blue,
+                    "https://i.pravatar.cc/150?u=sarah", // Sample Image
+                    hasCancel: true,
+                  ),
                 ],
               ),
             ),
@@ -88,14 +99,25 @@ class BookingsScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             ),
 
+            // Vertical List for Past Jobs
             ListView(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.symmetric(horizontal: 16),
               children: [
-                _buildPastJobCard("Electrical Issue", "David Chen", "Oct 26"),
-                _buildPastJobCard("Shelf Installation", "David Chen", "Oct 19",
-                    showActions: true),
+                _buildPastJobCard(
+                  "Electrical Issue",
+                  "David Chen",
+                  "Oct 26",
+                  "https://i.pravatar.cc/150?u=david",
+                ),
+                _buildPastJobCard(
+                  "Shelf Installation",
+                  "David Chen",
+                  "Oct 19",
+                  "https://i.pravatar.cc/150?u=david",
+                  showActions: true,
+                ),
               ],
             ),
           ],
@@ -104,9 +126,18 @@ class BookingsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildActiveCard(BuildContext context, String title, String sub,
-      String name, String btnText, Color btnCol,
-      {bool hasCancel = false}) {
+  // --- Helper Widgets ---
+
+  Widget _buildActiveCard(
+      BuildContext context,
+      String title,
+      String sub,
+      String name,
+      String btnText,
+      Color btnCol,
+      String imageUrl, {
+        bool hasCancel = false,
+      }) {
     return Container(
       width: 250,
       margin: const EdgeInsets.only(right: 12),
@@ -121,7 +152,13 @@ class BookingsScreen extends StatelessWidget {
         children: [
           Row(
             children: [
-              const CircleAvatar(radius: 20, backgroundColor: Colors.grey),
+              CircleAvatar(
+                radius: 20,
+                backgroundColor: Colors.grey.shade200,
+                backgroundImage: NetworkImage(imageUrl),
+                // Fallback icon if image fails
+                child: imageUrl.isEmpty ? const Icon(Icons.person, color: Colors.grey) : null,
+              ),
               const SizedBox(width: 10),
               Expanded(
                 child: Column(
@@ -136,34 +173,29 @@ class BookingsScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-
           Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
           const Text("Status: On Way",
               style: TextStyle(fontSize: 12, color: Colors.grey)),
-
           const Spacer(),
-
           Row(
             children: [
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
-
-                    // ONLY TRACK BUTTON OPENS MAP
                     if (btnText == "Track Plumber") {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                          const CustomerTrackingPage(bookingId: "booking1"),
+                          const CustomerTrackingPage(
+                            bookingId: "booking1",
+                          ),
                         ),
                       );
                     }
-
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: btnCol,
-                      foregroundColor: Colors.white),
+                      backgroundColor: btnCol, foregroundColor: Colors.white),
                   child: Text(btnText, style: const TextStyle(fontSize: 11)),
                 ),
               ),
@@ -172,8 +204,7 @@ class BookingsScreen extends StatelessWidget {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () {},
-                    child: const Text("Cancel",
-                        style: TextStyle(fontSize: 11)),
+                    child: const Text("Cancel", style: TextStyle(fontSize: 11)),
                   ),
                 )
               ]
@@ -184,8 +215,13 @@ class BookingsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPastJobCard(String title, String name, String date,
-      {bool showActions = false}) {
+  Widget _buildPastJobCard(
+      String title,
+      String name,
+      String date,
+      String imageUrl, {
+        bool showActions = false,
+      }) {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(12),
@@ -195,7 +231,11 @@ class BookingsScreen extends StatelessWidget {
         children: [
           Row(
             children: [
-              const CircleAvatar(radius: 25, backgroundColor: Colors.grey),
+              CircleAvatar(
+                radius: 25,
+                backgroundColor: Colors.grey.shade200,
+                backgroundImage: NetworkImage(imageUrl),
+              ),
               const SizedBox(width: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -204,8 +244,7 @@ class BookingsScreen extends StatelessWidget {
                       style: const TextStyle(fontWeight: FontWeight.bold)),
                   Text(name, style: const TextStyle(color: Colors.grey)),
                   Text("Completed on $date",
-                      style:
-                      const TextStyle(fontSize: 12, color: Colors.grey)),
+                      style: const TextStyle(fontSize: 12, color: Colors.grey)),
                 ],
               ),
             ],
@@ -215,14 +254,18 @@ class BookingsScreen extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                    child: ElevatedButton(
-                        onPressed: () {},
-                        child: const Text("Repeat Booking"))),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Text("Repeat Booking"),
+                  ),
+                ),
                 const SizedBox(width: 8),
                 Expanded(
-                    child: OutlinedButton(
-                        onPressed: () {},
-                        child: const Text("Leave Review"))),
+                  child: OutlinedButton(
+                    onPressed: () {},
+                    child: const Text("Leave Review"),
+                  ),
+                ),
               ],
             )
           ]
