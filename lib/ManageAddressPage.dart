@@ -66,7 +66,6 @@ class ManageAddressPage extends StatelessWidget {
   }
 
 
-
   Widget _buildChip(String label, bool isSelected) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
@@ -81,6 +80,46 @@ class ManageAddressPage extends StatelessWidget {
         label,
         style: TextStyle(
           color: isSelected ? const Color(0xFF1A237E) : Colors.black,
+        ),
+      ),
+    );
+  }
+
+
+
+  void _showAddressModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+      ),
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.9,
+        maxChildSize: 0.95,
+        minChildSize: 0.5,
+        expand: false,
+        builder: (context, scrollController) => SingleChildScrollView(
+          controller: scrollController,
+          child: Column(
+            children: [
+              // Map Preview Placeholder
+              Container(
+                height: 250,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+                  image: DecorationImage(
+                    image: AssetImage('assets/map_placeholder.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: const Center(
+                  child: Icon(Icons.location_on, color: Color(0xFF1A237E), size: 40),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
