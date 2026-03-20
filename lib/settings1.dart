@@ -1,3 +1,5 @@
+import 'package:fixmate/settings2,3.dart';
+import 'package:fixmate/settings4,5,6,7.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -11,7 +13,10 @@ class SettingsScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: const Icon(Icons.menu, color: Colors.black),
-        title: Image.asset('assets/logo.png', height: 40),
+        // Use your FixMate logo asset here
+        title: Image.asset('assets/logo.png', height: 40, errorBuilder: (context, error, stackTrace) {
+          return const Text("FixMate", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold));
+        }),
         centerTitle: true,
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.storefront_outlined, color: Colors.black)),
@@ -21,21 +26,22 @@ class SettingsScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
-          _buildSettingsItem("Change Password"),
-          _buildSettingsItem("Add Credit Card"),
-          _buildSettingsItem("Change Language"),
-          _buildSettingsItem("Privacy Policy"),
-          _buildSettingsItem("Contact Us"),
-          _buildSettingsItem("Delete Account"),
+          _buildSettingsItem(context, "Change Password", const ChangePasswordPage()),
+          _buildSettingsItem(context, "Add Credit Card", const AddCreditCardPage()),
+          _buildSettingsItem(context, "Change Language", const ChangeLanguagePage()),
+          _buildSettingsItem(context, "Privacy Policy", const PrivacyPolicyPage()),
+          _buildSettingsItem(context, "Contact Us", const ContactUsPage()),
+          _buildSettingsItem(context, "Delete Account", const DeleteAccountPage()),
         ],
       ),
     );
   }
-  Widget _buildSettingsItem(String title) {
+
+  Widget _buildSettingsItem(BuildContext context, String title, Widget destination) {
     return Container(
       margin: const EdgeInsets.only(bottom: 15),
       decoration: BoxDecoration(
-        border: Border.all(color: const Color(0xFFB2DFDB)), // Light teal border
+        border: Border.all(color: const Color(0xFFB2DFDB)), // Light teal border matching your UI
         borderRadius: BorderRadius.circular(10),
       ),
       child: ListTile(
@@ -44,7 +50,12 @@ class SettingsScreen extends StatelessWidget {
           style: const TextStyle(fontSize: 16, color: Colors.black87),
         ),
         trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.black),
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => destination),
+          );
+        },
       ),
     );
   }

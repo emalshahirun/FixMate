@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'login_page.dart';
 
 class UserSelectionScreen extends StatelessWidget {
-  const UserSelectionScreen({super.key});
+  final String userType;
+  const UserSelectionScreen({super.key, required this.userType});
 
   @override
   Widget build(BuildContext context) {

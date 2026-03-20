@@ -49,7 +49,7 @@ class OnboardingScreen extends StatelessWidget {
                     // Navigate to Login and remove Onboarding from the stack
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const UserSelectionScreen()),
+                      MaterialPageRoute(builder: (context) => const UserSelectionScreen(userType: '',)),
                     );
                   },
                   style: ElevatedButton.styleFrom(

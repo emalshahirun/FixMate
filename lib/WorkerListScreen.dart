@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'PaymentOption1.dart';
 
 class WorkerListScreen extends StatelessWidget {
   final String categoryTitle;
@@ -53,9 +54,18 @@ class WorkerListScreen extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // Navigate to the first payment screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PaymentOptionPage(
+                        ),
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF3F51B5), // Blue color
+                    backgroundColor: const Color(0xFF3F51B5),
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                   ),
                   child: const Text("Book Now", style: TextStyle(color: Colors.white, fontSize: 12)),
