@@ -26,6 +26,15 @@ class ManageAddressPage extends StatelessWidget {
               icon: const Icon(Icons.add, size: 20),
               label: const Text("Add another address", style: TextStyle(fontSize: 16)),
             ),
+            //
+
+            const SizedBox(height: 20),
+            _buildAddressCard(
+              context,
+              title: "Home",
+              address: "Plot no.209, Kavuri Hills, Madhapur, 500033\nPh: +91234567890",
+            ),
+
           ],
         ),
       ),
