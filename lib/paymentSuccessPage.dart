@@ -35,5 +35,21 @@ BorderRadius.circular(20)),
                     const Text("LKR 1500", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.blue)),
                   ],
                 ),
-              ),               
- 
+              ),
+              const SizedBox(height: 30),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue[900]),
+                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const BookingSuccessfulPage())),
+                  child: const Text("Proceed", style: TextStyle(color: Colors.white)),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+             
