@@ -62,3 +62,67 @@ class _PaymentOptionPageState extends State<PaymentOptionPage> {
                 border: OutlineInputBorder(),
               ),
             ),
+            const SizedBox(height: 10),
+            TextField(
+              controller: timeController,
+              decoration: const InputDecoration(
+                hintText: "Time",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              "Select payment method",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            _paymentTile("Visa", "**** **** **** 8970", Icons.credit_card),
+            _paymentTile("MasterCard", "**** **** **** 8970", Icons.payment),
+            _paymentTile(
+              "Paypal",
+              "mailaddress@mail.com",
+              Icons.account_balance_wallet,
+            ),
+            _paymentTile("Cash", "Expires: 12/26", Icons.money),
+            const SizedBox(height: 30),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[900],
+                ),
+                onPressed: _confirmBooking,
+                child: const Text(
+                  "Confirm Booking",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _paymentTile(String title, String subtitle, IconData icon) {
+    bool isSelected = selectedMethod == title;
+    return GestureDetector(
+      onTap: () => setState(() => selectedMethod = title),
+      child: Container(
+        margin: const EdgeInsets.only(top: 10),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: isSelected ? Colors.green : Colors.grey.shade300,
+          ),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: ListTile(
+          leading: Icon(icon, color: Colors.black),
+          title: Text(title),
+          subtitle: Text(subtitle),
+        ),
+      ),
+    );
+  }
+}
