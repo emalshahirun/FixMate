@@ -146,6 +146,19 @@ class ManageAddressPage extends StatelessWidget {
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                       ),
                     ),
+
+
+                    const SizedBox(height: 20),
+                    const Text("Save as", style: TextStyle(color: Colors.grey)),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        _buildChip("Home", true),
+                        const SizedBox(width: 10),
+                        _buildChip("Other", false),
+                      ],
+                    ),
+
                   ],
                 ),
               ),
