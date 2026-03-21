@@ -101,12 +101,22 @@ class _PaymentOptionPageState extends State<PaymentOptionPage> {
                 ),
               ),
             ),
+
             const SizedBox(height: 10),
+
+            // Time Field
             TextField(
               controller: timeController,
-              decoration: const InputDecoration(
-                hintText: "Time",
-                border: OutlineInputBorder(),
+              readOnly: true,
+              onTap: pickTime,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.access_time),
+                hintText: "Select Time",
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
             ),
             const SizedBox(height: 20),
