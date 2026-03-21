@@ -1,6 +1,6 @@
 import 'package:fixmate/paymentSuccess2.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart'; // Firebase Firestore
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PaymentOptionPage extends StatefulWidget {
   const PaymentOptionPage({super.key});
@@ -14,8 +14,31 @@ class _PaymentOptionPageState extends State<PaymentOptionPage> {
   final TextEditingController dateController = TextEditingController();
   final TextEditingController timeController = TextEditingController();
 
+  // Date Picker
+  Future<void> pickDate() async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2024),
+      lastDate: DateTime(2030),
+    );
+    if (picked != null) {
+      dateController.text = "${picked.year}-${picked.month}-${picked.day}";
+    }
+  }
+
+  // Time Picker
+  Future<void> pickTime() async {
+    TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+    if (picked != null) {
+      timeController.text = picked.format(context);
+    }
+  }
+
   void _confirmBooking() async {
-    // Firebase logic to save the booking
     final bookingData = {
       'date': dateController.text,
       'time': timeController.text,
