@@ -1,6 +1,5 @@
 import 'package:fixmate/worker_map.dart';
 import 'package:flutter/material.dart';
-import 'tracking_map_screen.dart';
 
 class WorkerHomeScreen extends StatelessWidget {
   const WorkerHomeScreen({super.key});
@@ -61,7 +60,7 @@ class WorkerHomeScreen extends StatelessWidget {
                         ),
                       ),
 
-                      const CircleAvatar(
+                      CircleAvatar(
                         radius: 40,
                         backgroundImage: AssetImage('assets/man.webp'),
                       ),

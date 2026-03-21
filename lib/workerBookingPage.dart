@@ -12,8 +12,10 @@ class WorkerBookingsPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
-          title: const Text("My Bookings",
-              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+          title: const Text(
+            "My Bookings",
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
           bottom: const TabBar(
             labelColor: Colors.blue,
             unselectedLabelColor: Colors.grey,
@@ -35,7 +37,6 @@ class WorkerBookingsPage extends StatelessWidget {
       ),
     );
   }
-
 
   Widget _buildBookingList(String status) {
     // Mock Data - In a real app, filter your Firebase list by 'status'
@@ -73,7 +74,12 @@ class WorkerBookingsPage extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(15),
-            boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10)],
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.05),
+                blurRadius: 10,
+              ),
+            ],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,16 +87,30 @@ class WorkerBookingsPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(booking.service,
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                  Text(booking.price,
-                      style: const TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+                  Text(
+                    booking.service,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  Text(
+                    booking.price,
+                    style: const TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ],
               ),
               const Divider(height: 24),
               Row(
                 children: [
-                  const Icon(Icons.person_outline, size: 18, color: Colors.grey),
+                  const Icon(
+                    Icons.person_outline,
+                    size: 18,
+                    color: Colors.grey,
+                  ),
                   const SizedBox(width: 8),
                   Text(booking.customerName),
                 ],
@@ -98,7 +118,11 @@ class WorkerBookingsPage extends StatelessWidget {
               const SizedBox(height: 8),
               Row(
                 children: [
-                  const Icon(Icons.calendar_today_outlined, size: 18, color: Colors.grey),
+                  const Icon(
+                    Icons.calendar_today_outlined,
+                    size: 18,
+                    color: Colors.grey,
+                  ),
                   const SizedBox(width: 8),
                   Text("${booking.date} at ${booking.time}"),
                 ],
@@ -112,7 +136,9 @@ class WorkerBookingsPage extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
                           foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                         ),
                         onPressed: () {
                           // Navigate to your WorkerArrivalPage
@@ -139,11 +165,11 @@ class Booking {
   final String status; // Upcoming, Completed, Cancelled
 
   Booking({
-  required this.customerName,
-  required this.service,
-  required this.date,
-  required this.time,
-  required this.price,
-  required this.status,
+    required this.customerName,
+    required this.service,
+    required this.date,
+    required this.time,
+    required this.price,
+    required this.status,
   });
-  }
+}

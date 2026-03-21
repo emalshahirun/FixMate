@@ -2,7 +2,6 @@ import 'package:fixmate/settings2,3.dart';
 import 'package:fixmate/settings4,5,6,7.dart';
 import 'package:fixmate/user_selection.dart';
 import 'package:flutter/material.dart';
-import 'Profile2.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

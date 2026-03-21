@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'WorkerHome.dart';
 import 'userCallPage.dart';
 
 class WorkerArrivalPage extends StatelessWidget {
@@ -34,14 +33,14 @@ class WorkerArrivalPage extends StatelessWidget {
                 ),
 
                 // Dark Overlay
-                Container(color: Colors.black.withOpacity(0.6)),
+                Container(color: Colors.black.withValues(alpha: 0.6)),
 
                 // Custom Back Button (Redirects to Worker Home)
                 Positioned(
                   top: 50,
                   left: 15,
                   child: CircleAvatar(
-                    backgroundColor: Colors.white.withOpacity(0.2),
+                    backgroundColor: Colors.white.withValues(alpha: 0.2),
                     child: IconButton(
                       icon: const Icon(
                         Icons.arrow_back_ios_new,

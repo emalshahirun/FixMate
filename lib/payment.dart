@@ -23,7 +23,7 @@ class _PaymentOptionPageState extends State<PaymentOptionPage> {
       firstDate: DateTime(2024),
       lastDate: DateTime(2030),
     );
-    if (picked != null) {
+    if (picked != null && mounted) {
       dateController.text = "${picked.year}-${picked.month}-${picked.day}";
     }
   }
@@ -33,7 +33,7 @@ class _PaymentOptionPageState extends State<PaymentOptionPage> {
       context: context,
       initialTime: TimeOfDay.now(),
     );
-    if (picked != null) {
+    if (picked != null && mounted) {
       timeController.text = picked.format(context);
     }
   }
@@ -60,21 +60,29 @@ class _PaymentOptionPageState extends State<PaymentOptionPage> {
 
         await FirebaseFirestore.instance.collection('bookings').add(bookingData);
 
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const PaymentSuccessPage()),
-        );
+        if (mounted) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const PaymentSuccessPage()),
+          );
+        }
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Payment failed. Please try again.')),
-        );
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Payment failed. Please try again.')),
+          );
+        }
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: $e')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: $e')),
+        );
+      }
     } finally {
-      setState(() => _isProcessing = false);
+      if (mounted) {
+        setState(() => _isProcessing = false);
+      }
     }
   }
 
@@ -141,7 +149,7 @@ class _PaymentOptionPageState extends State<PaymentOptionPage> {
               height: 55,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue[900],
+                  backgroundColor: const Color.fromARGB(255, 13, 71, 161),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 ),
                 onPressed: _isProcessing ? null : _confirmBooking,
@@ -157,24 +165,83 @@ class _PaymentOptionPageState extends State<PaymentOptionPage> {
   }
 
   Widget _paymentTile(String title, String subtitle, IconData icon) {
-    bool isSelected = selectedMethod == title;
-    return GestureDetector(
-      onTap: () => setState(() => selectedMethod = title),
-      child: Card(
-        elevation: isSelected ? 4 : 1,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-          side: BorderSide(color: isSelected ? Colors.blue : Colors.grey.shade300),
-        ),
-        child: ListTile(
-          leading: Icon(icon, color: Colors.blue),
-          title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-          subtitle: Text(subtitle),
-          trailing: isSelected
-              ? const Icon(Icons.check_circle, color: Colors.green)
-              : const Icon(Icons.arrow_forward_ios, size: 16),
+  bool isSelected = selectedMethod == title;
+
+  return GestureDetector(
+    onTap: () => setState(() => selectedMethod = title),
+    child: Card(
+      elevation: isSelected ? 5 : 2,
+      margin: const EdgeInsets.symmetric(vertical: 6),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(
+          color: isSelected ? Colors.blue : Colors.grey.shade300,
+          width: isSelected ? 2 : 1,
         ),
       ),
+      child: Column(
+        children: [
+          ListTile(
+            leading: Icon(icon, color: Colors.blue),
+            title: Text(
+              title,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            subtitle: Text(subtitle),
+            trailing: isSelected
+                ? const Icon(Icons.keyboard_arrow_up)
+                : const Icon(Icons.keyboard_arrow_down),
+          ),
+
+          /// 🔥 EXPANDED AREA
+          if (isSelected)
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: _paymentDetails(title),
+            ),
+        ],
+      ),
+    ),
+  );
+  }
+
+  Widget _paymentDetails(String method) {
+  if (method == "Visa" || method == "MasterCard") {
+    return Column(
+      children: [
+        TextField(
+          decoration: InputDecoration(
+            hintText: "Card Number",
+            filled: true,
+            fillColor: Colors.grey[100],
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+          ),
+        ),
+        const SizedBox(height: 10),
+        TextField(
+          decoration: InputDecoration(
+            hintText: "Card Holder Name",
+            filled: true,
+            fillColor: Colors.grey[100],
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+          ),
+        ),
+      ],
+    );
+  } else if (method == "PayPal") {
+    return TextField(
+      decoration: InputDecoration(
+        hintText: "Enter PayPal Email",
+        filled: true,
+        fillColor: Colors.grey[100],
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+    );
+  } else {
+    return const Text(
+      "Pay with cash after service",
+      style: TextStyle(color: Colors.grey),
     );
   }
+}
 }

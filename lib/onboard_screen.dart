@@ -21,7 +21,10 @@ class OnboardingScreen extends StatelessWidget {
                 width: 300,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: Colors.indigo.withOpacity(0.1), width: 10),
+                  border: Border.all(
+                    color: Colors.indigo.withValues(alpha: 0.1),
+                    width: 10,
+                  ),
                   image: const DecorationImage(
                     image: AssetImage("assets/onboard.jpg"),
                     fit: BoxFit.cover,
@@ -49,12 +52,17 @@ class OnboardingScreen extends StatelessWidget {
                     // Navigate to Login and remove Onboarding from the stack
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const UserSelectionScreen(userType: '',)),
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const UserSelectionScreen(userType: ''),
+                      ),
                     );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.indigo,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                   ),
                   child: const Text(
                     "Next",

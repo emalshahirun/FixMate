@@ -15,7 +15,8 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   bool _isLoading = false;
 
@@ -23,9 +24,9 @@ class _SignupPageState extends State<SignupPage> {
   Future<void> _handleSignUp() async {
     // Basic validation
     if (_passwordController.text != _confirmPasswordController.text) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Passwords do not match!")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Passwords do not match!")));
       return;
     }
 
@@ -33,23 +34,24 @@ class _SignupPageState extends State<SignupPage> {
 
     try {
       // Create auth user
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+            email: _emailController.text.trim(),
+            password: _passwordController.text.trim(),
+          );
 
       // Save extra data in Firestore using the UID from Auth
       await FirebaseFirestore.instance
           .collection('users')
           .doc(userCredential.user!.uid)
           .set({
-        'name': _nameController.text.trim(),
-        'email': _emailController.text.trim(),
-        'phone': _phoneController.text.trim(),
-        'role': 'customer',
-        'uid': userCredential.user!.uid,
-        'createdAt': FieldValue.serverTimestamp(),
-      });
+            'name': _nameController.text.trim(),
+            'email': _emailController.text.trim(),
+            'phone': _phoneController.text.trim(),
+            'role': 'customer',
+            'uid': userCredential.user!.uid,
+            'createdAt': FieldValue.serverTimestamp(),
+          });
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -58,9 +60,9 @@ class _SignupPageState extends State<SignupPage> {
         Navigator.pop(context); // Go back after success
       }
     } on FirebaseAuthException catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.message ?? "An error occurred")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.message ?? "An error occurred")));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
@@ -89,7 +91,10 @@ class _SignupPageState extends State<SignupPage> {
         ),
         title: const Text(
           "Sign up",
-          style: TextStyle(color: Color(0xFF5C6BC0), fontWeight: FontWeight.bold),
+          style: TextStyle(
+            color: Color(0xFF5C6BC0),
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
       ),
@@ -104,13 +109,18 @@ class _SignupPageState extends State<SignupPage> {
             const SizedBox(height: 20),
             _buildTextField(hint: "Phone", controller: _phoneController),
             const SizedBox(height: 20),
-            _buildTextField(hint: "Password", isPassword: true, controller: _passwordController),
+            _buildTextField(
+              hint: "Password",
+              isPassword: true,
+              controller: _passwordController,
+            ),
             const SizedBox(height: 20),
             _buildTextField(
-                hint: "Confirm password",
-                isPassword: true,
-                showVisibilityIcon: true,
-                controller: _confirmPasswordController),
+              hint: "Confirm password",
+              isPassword: true,
+              showVisibilityIcon: true,
+              controller: _confirmPasswordController,
+            ),
             const SizedBox(height: 50),
 
             // Sign Up Button
@@ -121,20 +131,22 @@ class _SignupPageState extends State<SignupPage> {
                 onPressed: _isLoading ? null : _handleSignUp,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF4355B8),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
                   elevation: 0,
                 ),
                 child: _isLoading
                     ? const CircularProgressIndicator(color: Colors.white)
                     : const Text(
-                  "SIGN UP",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.2,
-                  ),
-                ),
+                        "SIGN UP",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                        ),
+                      ),
               ),
             ),
           ],
@@ -151,7 +163,7 @@ class _SignupPageState extends State<SignupPage> {
   }) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFFE0E0E0).withOpacity(0.5),
+        color: const Color(0xFFE0E0E0).withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(20),
       ),
       child: TextField(
@@ -160,7 +172,10 @@ class _SignupPageState extends State<SignupPage> {
         decoration: InputDecoration(
           hintText: hint,
           hintStyle: const TextStyle(color: Colors.blueGrey, fontSize: 16),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 25,
+            vertical: 20,
+          ),
           border: InputBorder.none,
           suffixIcon: showVisibilityIcon
               ? const Icon(Icons.visibility_off_outlined, color: Colors.grey)

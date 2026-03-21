@@ -9,7 +9,7 @@ class CustomerTrackingPage extends StatelessWidget {
   final String bookingId;
 
   const CustomerTrackingPage({Key? key, required this.bookingId})
-      : super(key: key);
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,8 @@ class CustomerTrackingPage extends StatelessWidget {
                 ),
                 children: [
                   TileLayer(
-                    urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    urlTemplate:
+                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                     userAgentPackageName: 'com.example.fixmate',
                   ),
                   // Draw line between worker and user
@@ -60,7 +61,10 @@ class CustomerTrackingPage extends StatelessWidget {
                         width: 40,
                         height: 40,
                         child: const Icon(
-                            Icons.location_on, color: Colors.red, size: 40),
+                          Icons.location_on,
+                          color: Colors.red,
+                          size: 40,
+                        ),
                       ),
                       Marker(
                         point: workerPos,
@@ -69,8 +73,11 @@ class CustomerTrackingPage extends StatelessWidget {
                         child: Transform.rotate(
                           angle: 0.5,
                           // You can calculate actual heading from Firebase if needed
-                          child: const Icon(Icons.directions_car, color: Colors
-                              .green, size: 40),
+                          child: const Icon(
+                            Icons.directions_car,
+                            color: Colors.green,
+                            size: 40,
+                          ),
                         ),
                       ),
                     ],
@@ -116,9 +123,16 @@ class CustomerTrackingPage extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             decoration: BoxDecoration(
-                color: Colors.blue, borderRadius: BorderRadius.circular(8)),
-            child: const Text("FixMate", style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold)),
+              color: Colors.blue,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const Text(
+              "FixMate",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
           const Row(
             children: [
@@ -144,9 +158,10 @@ class CustomerTrackingPage extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text("Your worker is coming in ${data['eta'] ?? '--'}",
-              style: const TextStyle(
-                  fontSize: 16, fontWeight: FontWeight.bold)),
+          Text(
+            "Your worker is coming in ${data['eta'] ?? '--'}",
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
           const SizedBox(height: 15),
           Row(
             children: [
@@ -155,10 +170,14 @@ class CustomerTrackingPage extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(data['worker_name'] ?? "Saman",
-                      style: const TextStyle(fontWeight: FontWeight.bold)),
-                  const Text("4.9 (531 reviews)",
-                      style: TextStyle(color: Colors.grey, fontSize: 12)),
+                  Text(
+                    data['worker_name'] ?? "Saman",
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const Text(
+                    "4.9 (531 reviews)",
+                    style: TextStyle(color: Colors.grey, fontSize: 12),
+                  ),
                 ],
               ),
             ],
@@ -168,15 +187,22 @@ class CustomerTrackingPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text("Payment method"),
-              Text("LKR ${data['price'] ?? '0.00'}", style: const TextStyle(
-                  fontSize: 20, fontWeight: FontWeight.bold)),
+              Text(
+                "LKR ${data['price'] ?? '0.00'}",
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 10),
           Container(
             padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(color: Colors.teal.withOpacity(0.05),
-                borderRadius: BorderRadius.circular(8)),
+            decoration: BoxDecoration(
+              color: Colors.teal.withValues(alpha: 0.05),
+              borderRadius: BorderRadius.circular(8),
+            ),
             child: Row(
               children: const [
                 Icon(Icons.credit_card, color: Colors.indigo),
@@ -211,15 +237,18 @@ class CustomerTrackingPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ChatScreen()),
+                        builder: (context) => const ChatScreen(),
+                      ),
                     );
                   },
                   child: const Text(
-                      "Message", style: TextStyle(color: Colors.white)),
+                    "Message",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );
