@@ -11,3 +11,11 @@ class PaymentService {
     required String date,
     required String time,
   }) async {
+     try {
+      // Validation
+      if (paymentMode.trim().isEmpty ||
+          amount.trim().isEmpty ||
+          date.trim().isEmpty ||
+          time.trim().isEmpty) {
+        throw Exception("All fields are required");
+      }
