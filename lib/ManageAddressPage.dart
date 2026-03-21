@@ -22,7 +22,8 @@ class ManageAddressPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextButton.icon(
-              onPressed: () {},
+
+              onPressed: () => _showAddressModal(context),
               icon: const Icon(Icons.add, size: 20),
               label: const Text("Add another address", style: TextStyle(fontSize: 16)),
             ),
@@ -59,7 +60,17 @@ class ManageAddressPage extends StatelessWidget {
               ],
             ),
           ),
-          const Icon(Icons.more_vert),
+
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.more_vert),
+            onSelected: (value) {
+              if (value == 'edit') _showAddressModal(context);
+            },
+            itemBuilder: (context) => [
+              const PopupMenuItem(value: 'edit', child: Text("Edit")),
+              const PopupMenuItem(value: 'delete', child: Text("Delete")),
+            ],
+          ),
         ],
       ),
     );
@@ -102,8 +113,6 @@ class ManageAddressPage extends StatelessWidget {
           controller: scrollController,
           child: Column(
             children: [
-
-              // Map Preview Placeholder
               Container(
                 height: 250,
                 width: double.infinity,
@@ -118,8 +127,6 @@ class ManageAddressPage extends StatelessWidget {
                   child: Icon(Icons.location_on, color: Color(0xFF1A237E), size: 40),
                 ),
               ),
-
-
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
@@ -156,8 +163,6 @@ class ManageAddressPage extends StatelessWidget {
                         _buildChip("Other", false),
                       ],
                     ),
-
-                    // ✅ COMMIT 2 added here
                     const SizedBox(height: 30),
                     SizedBox(
                       width: double.infinity,
@@ -171,11 +176,9 @@ class ManageAddressPage extends StatelessWidget {
                         child: const Text("Proceed", style: TextStyle(color: Colors.white, fontSize: 16)),
                       ),
                     ),
-
                   ],
                 ),
               ),
-
             ],
           ),
         ),
