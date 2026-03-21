@@ -31,3 +31,14 @@ class BookingSuccessfulPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     child: Container(color: Colors.grey[300], height: 60, width: 60, child: const Icon(Icons.person)),
                   ),
+                  const SizedBox(width: 15),
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Plumber", style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text("1 hr • Includes dummy info", style: TextStyle(color: Colors.grey, fontSize: 12)),
+                    ],
+                  )
+                ],
+              ),
+            ),
