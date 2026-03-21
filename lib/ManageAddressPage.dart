@@ -86,7 +86,6 @@ class ManageAddressPage extends StatelessWidget {
   }
 
 
-
   void _showAddressModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -103,6 +102,7 @@ class ManageAddressPage extends StatelessWidget {
           controller: scrollController,
           child: Column(
             children: [
+
               // Map Preview Placeholder
               Container(
                 height: 250,
@@ -118,6 +118,38 @@ class ManageAddressPage extends StatelessWidget {
                   child: Icon(Icons.location_on, color: Color(0xFF1A237E), size: 40),
                 ),
               ),
+
+
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("Pitipana, Homagama",
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 8),
+                    const Text(
+                      "Plot no.209, Kavuri Hills, Pitipana, Homagama 80000\nPh: +91234567890",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    const SizedBox(height: 25),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: "House/Flat Number *",
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: "Landmark (Optional)",
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
             ],
           ),
         ),
