@@ -42,3 +42,26 @@ class BookingSuccessfulPage extends StatelessWidget {
                 ],
               ),
             ),
+              const Spacer(),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue[900]),
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MainNavigation(userType: '',)), // your bottom nav screen
+                        (route) => false,
+                  );
+                },
+                child: const Text("Proceed", style: TextStyle(color: Colors.white)),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+           
