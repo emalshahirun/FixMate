@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-<<<<<<< HEAD
 import 'WorkerHome.dart';
-=======
->>>>>>> b49a046 (added payment success page)
 import 'userCallPage.dart';
 
 class WorkerArrivalPage extends StatelessWidget {
@@ -29,7 +26,8 @@ class WorkerArrivalPage extends StatelessWidget {
                   ),
                   children: [
                     TileLayer(
-                      urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                      urlTemplate:
+                          'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                       userAgentPackageName: 'com.example.fixmate',
                     ),
                   ],
@@ -45,7 +43,11 @@ class WorkerArrivalPage extends StatelessWidget {
                   child: CircleAvatar(
                     backgroundColor: Colors.white.withOpacity(0.2),
                     child: IconButton(
-                      icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new,
+                        color: Colors.white,
+                        size: 20,
+                      ),
                       onPressed: () {
                         Navigator.pop(context);
                       },
@@ -76,7 +78,9 @@ class WorkerArrivalPage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const CallPage()),
+                        MaterialPageRoute(
+                          builder: (context) => const CallPage(),
+                        ),
                       );
                     },
                   ),
@@ -115,7 +119,10 @@ class WorkerArrivalPage extends StatelessWidget {
             ),
             child: const Text(
               "FixMate",
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           const Row(
@@ -140,7 +147,11 @@ class WorkerArrivalPage extends StatelessWidget {
         children: [
           Text(
             "You Have Arrived",
-            style: TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 26,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           SizedBox(height: 5),
           Text(
@@ -163,7 +174,10 @@ class WorkerArrivalPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Job Details", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          const Text(
+            "Job Details",
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
           const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -171,17 +185,28 @@ class WorkerArrivalPage extends StatelessWidget {
               const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Repair Leaky Faucet", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                  Text("123 Oak St, Apt 4A", style: TextStyle(color: Colors.grey)),
+                  Text(
+                    "Repair Leaky Faucet",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    "123 Oak St, Apt 4A",
+                    style: TextStyle(color: Colors.grey),
+                  ),
                 ],
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
                 onPressed: () => Navigator.pop(context),
-                child: const Text("Navigate", style: TextStyle(color: Colors.white)),
+                child: const Text(
+                  "Navigate",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ],
           ),
@@ -191,19 +216,33 @@ class WorkerArrivalPage extends StatelessWidget {
   }
 
   /// --- HELPER: BLUE BUTTON ---
-  Widget _buildBlueButton({required IconData icon, required String label, VoidCallback? onTap}) {
+  Widget _buildBlueButton({
+    required IconData icon,
+    required String label,
+    VoidCallback? onTap,
+  }) {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
       child: Container(
         height: 60,
-        decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(12)),
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.circular(12),
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon, color: Colors.white),
             const SizedBox(width: 10),
-            Text(label, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+            Text(
+              label,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
       ),
@@ -224,7 +263,10 @@ class WorkerArrivalPage extends StatelessWidget {
         children: [
           Icon(icon, color: Colors.black87),
           const SizedBox(width: 10),
-          Text(label, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+          Text(
+            label,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          ),
         ],
       ),
     );

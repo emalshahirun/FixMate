@@ -1,12 +1,6 @@
 import 'package:fixmate/worker_map.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 import 'tracking_map_screen.dart';
-=======
->>>>>>> b49a046 (added payment success page)
->>>>>>> 6fdeab1008fea820f9aabb68120fca4ee8411c48
 
 class WorkerHomeScreen extends StatelessWidget {
   const WorkerHomeScreen({super.key});
@@ -27,29 +21,26 @@ class WorkerHomeScreen extends StatelessWidget {
             SizedBox(width: 8),
             Text(
               "FixMate",
-              style: TextStyle(
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
             ),
           ],
         ),
         centerTitle: true,
         actions: [
           IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.storefront_outlined, color: Colors.black)),
+            onPressed: () {},
+            icon: const Icon(Icons.storefront_outlined, color: Colors.black),
+          ),
           IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.shopping_cart_outlined,
-                  color: Colors.black)),
+            onPressed: () {},
+            icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black),
+          ),
         ],
       ),
 
       body: SingleChildScrollView(
         child: Column(
           children: [
-
             // -------- HEADER --------
             Container(
               width: double.infinity,
@@ -58,7 +49,6 @@ class WorkerHomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
@@ -83,17 +73,19 @@ class WorkerHomeScreen extends StatelessWidget {
                   const Text(
                     "Current Job",
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
 
                   const Text(
                     "Repair Leaky Faucet",
                     style: TextStyle(
-                        color: Colors.lightBlueAccent,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold),
+                      color: Colors.lightBlueAccent,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
 
                   const SizedBox(height: 8),
@@ -107,8 +99,11 @@ class WorkerHomeScreen extends StatelessWidget {
 
                   const Row(
                     children: [
-                      Icon(Icons.location_on_outlined,
-                          color: Colors.white70, size: 18),
+                      Icon(
+                        Icons.location_on_outlined,
+                        color: Colors.white70,
+                        size: 18,
+                      ),
                       SizedBox(width: 5),
                       Text(
                         "123 Oak St, Sarah Cpt 4A",
@@ -121,8 +116,7 @@ class WorkerHomeScreen extends StatelessWidget {
 
                   const Row(
                     children: [
-                      Icon(Icons.access_time,
-                          color: Colors.white70, size: 18),
+                      Icon(Icons.access_time, color: Colors.white70, size: 18),
                       SizedBox(width: 5),
                       Text(
                         "ETA: 15 min",
@@ -138,23 +132,21 @@ class WorkerHomeScreen extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: ElevatedButton(
                       onPressed: () {
-
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                            const MapScreen(
-                              bookingId: "booking2",
-                            ),
+                                const MapScreen(bookingId: "booking2"),
                           ),
                         );
-
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 12),
+                          horizontal: 40,
+                          vertical: 12,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
@@ -162,7 +154,9 @@ class WorkerHomeScreen extends StatelessWidget {
                       child: const Text(
                         "Navigate",
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -177,9 +171,7 @@ class WorkerHomeScreen extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Available Jobs",
-                  style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -190,14 +182,26 @@ class WorkerHomeScreen extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 children: [
-                  _buildJobCard(context, "Electrical Issue",
-                      Icons.bolt, Colors.purple),
+                  _buildJobCard(
+                    context,
+                    "Electrical Issue",
+                    Icons.bolt,
+                    Colors.purple,
+                  ),
 
-                  _buildJobCard(context, "Broken Pipe",
-                      Icons.plumbing, Colors.black87),
+                  _buildJobCard(
+                    context,
+                    "Broken Pipe",
+                    Icons.plumbing,
+                    Colors.black87,
+                  ),
 
-                  _buildJobCard(context, "Shelf Install",
-                      Icons.handyman, Colors.blueGrey),
+                  _buildJobCard(
+                    context,
+                    "Shelf Install",
+                    Icons.handyman,
+                    Colors.blueGrey,
+                  ),
                 ],
               ),
             ),
@@ -213,9 +217,10 @@ class WorkerHomeScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                   boxShadow: const [
                     BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 10,
-                        spreadRadius: 2)
+                      color: Colors.black12,
+                      blurRadius: 10,
+                      spreadRadius: 2,
+                    ),
                   ],
                 ),
                 child: const Column(
@@ -242,10 +247,7 @@ class WorkerHomeScreen extends StatelessWidget {
 
                     Text(
                       "This Week's Earnings",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12,
-                      ),
+                      style: TextStyle(color: Colors.grey, fontSize: 12),
                     ),
                   ],
                 ),
@@ -259,24 +261,19 @@ class WorkerHomeScreen extends StatelessWidget {
 
   // -------- JOB CARD --------
   Widget _buildJobCard(
-      BuildContext context,
-      String title,
-      IconData icon,
-      Color iconColor) {
-
+    BuildContext context,
+    String title,
+    IconData icon,
+    Color iconColor,
+  ) {
     return GestureDetector(
       onTap: () {
-
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>
-            const MapScreen(
-              bookingId: "booking2",
-            ),
+            builder: (context) => const MapScreen(bookingId: "booking2"),
           ),
         );
-
       },
       child: Container(
         width: 140,
@@ -292,7 +289,6 @@ class WorkerHomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             Icon(icon, size: 50, color: iconColor),
 
             const SizedBox(height: 15),
@@ -300,9 +296,7 @@ class WorkerHomeScreen extends StatelessWidget {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
             ),
 
             const SizedBox(height: 5),
@@ -310,13 +304,10 @@ class WorkerHomeScreen extends StatelessWidget {
             const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.location_on,
-                    size: 14, color: Colors.grey),
+                Icon(Icons.location_on, size: 14, color: Colors.grey),
                 Text(
                   " Near you",
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 10),
+                  style: TextStyle(color: Colors.grey, fontSize: 10),
                 ),
               ],
             ),

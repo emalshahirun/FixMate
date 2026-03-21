@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'PayBookingSuccess3.dart';
+import 'bookingSuccessfulPage.dart';
 
 class PaymentSuccessPage extends StatelessWidget {
   const PaymentSuccessPage({super.key});
@@ -17,22 +17,44 @@ class PaymentSuccessPage extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.all(40),
-                decoration: BoxDecoration(color: Colors.white, borderRadius: 
-BorderRadius.circular(20)),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
                 child: Column(
                   children: [
-                    const CircleAvatar(radius: 30, backgroundColor: Colors.blue, child: Icon(Icons.check, color: Colors.white, size: 40)),
+                    const CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Colors.blue,
+                      child: Icon(Icons.check, color: Colors.white, size: 40),
+                    ),
                     const SizedBox(height: 10),
                     const Text("Great", style: TextStyle(color: Colors.blue)),
-                    const Text("Payment Success", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    const Text(
+                      "Payment Success",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     const Divider(height: 40),
                     _receiptRow("Payment Mode", "Master card"),
                     _receiptRow("Total Amount", "LKR 1500"),
                     _receiptRow("Pay Date", "Apr 10, 2022"),
                     _receiptRow("Pay Time", "10:45 am"),
                     const SizedBox(height: 20),
-                    const Text("Total Pay", style: TextStyle(color: Colors.grey)),
-                    const Text("LKR 1500", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.blue)),
+                    const Text(
+                      "Total Pay",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    const Text(
+                      "LKR 1500",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -41,25 +63,38 @@ BorderRadius.circular(20)),
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue[900]),
-                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const BookingSuccessfulPage())),
-                  child: const Text("Proceed", style: TextStyle(color: Colors.white)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue[900],
+                  ),
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const BookingSuccessfulPage(),
+                    ),
+                  ),
+                  child: const Text(
+                    "Proceed",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         ),
       ),
     );
   }
- Widget _receiptRow(String label, String value) {
+
+  Widget _receiptRow(String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [Text(label, style: const TextStyle(color: Colors.grey)), Text(value, style: const TextStyle(fontWeight: FontWeight.bold))],
+        children: [
+          Text(label, style: const TextStyle(color: Colors.grey)),
+          Text(value, style: const TextStyle(fontWeight: FontWeight.bold)),
+        ],
       ),
     );
- }
-} 
-             
+  }
+}
