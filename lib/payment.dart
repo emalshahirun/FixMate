@@ -48,7 +48,6 @@ class _PaymentOptionPageState extends State<PaymentOptionPage> {
       'timestamp': FieldValue.serverTimestamp(),
     };
 
-    // Replace 'bookings' with your Firestore collection name
     await FirebaseFirestore.instance.collection('bookings').add(bookingData);
 
     Navigator.push(
@@ -60,29 +59,46 @@ class _PaymentOptionPageState extends State<PaymentOptionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
+
       appBar: AppBar(
         title: const Text("Payment Option"),
-        leading: const BackButton(),
+        backgroundColor: Colors.blue[900],
+        elevation: 0,
       ),
+
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Current location",
-              style: TextStyle(color: Colors.grey),
+            // Location Card
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: ListTile(
+                leading: const Icon(Icons.location_on, color: Colors.blue),
+                title: const Text("Current Location"),
+                subtitle: const Text("2972 Westheimer Rd. Santa Ana, Illinois"),
+              ),
             ),
-            const Text(
-              "2972 Westheimer Rd. Santa Ana, Illinois",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
+
             const SizedBox(height: 20),
+
+            // Date Field
             TextField(
               controller: dateController,
-              decoration: const InputDecoration(
-                hintText: "Date",
-                border: OutlineInputBorder(),
+              readOnly: true,
+              onTap: pickDate,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.calendar_today),
+                hintText: "Select Date",
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
             ),
             const SizedBox(height: 10),
