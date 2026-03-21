@@ -105,33 +105,18 @@ class WorkerListScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                       ),
 
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PaymentOptionPage(),
-                            ),
-                          );
-                        },
-
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF3F51B5),
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                        ),
-
-                        child: const Text(
-                          "Book Now",
-                          style: TextStyle(color: Colors.white, fontSize: 12),
-                        ),
+                      child: const Text(
+                        "Book Now",
+                        style: TextStyle(color: Colors.white, fontSize: 12),
                       ),
-                    ],
-                  ),
-                );
-              },
-            );
-          },
-        ),
-      );
-    }
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
 }
