@@ -21,3 +21,13 @@ class BookingSuccessfulPage extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.grey),
             ),
+            const SizedBox(height: 40),
+            Container(
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(border: Border.all(color: Colors.grey.shade200), borderRadius: BorderRadius.circular(15)),
+              child: Row(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(color: Colors.grey[300], height: 60, width: 60, child: const Icon(Icons.person)),
+                  ),
