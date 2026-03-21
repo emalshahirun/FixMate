@@ -119,31 +119,46 @@ class _PaymentOptionPageState extends State<PaymentOptionPage> {
                 ),
               ),
             ),
+
             const SizedBox(height: 20),
+
             const Text(
-              "Select payment method",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              "Select Payment Method",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
+
+            const SizedBox(height: 10),
+
             _paymentTile("Visa", "**** **** **** 8970", Icons.credit_card),
-            _paymentTile("MasterCard", "**** **** **** 8970", Icons.payment),
             _paymentTile(
-              "Paypal",
-              "mailaddress@mail.com",
+              "MasterCard",
+              "**** **** **** 1234",
+              Icons.credit_card,
+            ),
+            _paymentTile(
+              "PayPal",
+              "user@mail.com",
               Icons.account_balance_wallet,
             ),
-            _paymentTile("Cash", "Expires: 12/26", Icons.money),
+            _paymentTile("Cash", "Pay after service", Icons.money),
+
             const SizedBox(height: 30),
+
+            // Button
             SizedBox(
               width: double.infinity,
-              height: 50,
+              height: 55,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue[900],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
                 onPressed: _confirmBooking,
                 child: const Text(
                   "Confirm Booking",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
             ),
@@ -155,6 +170,7 @@ class _PaymentOptionPageState extends State<PaymentOptionPage> {
 
   Widget _paymentTile(String title, String subtitle, IconData icon) {
     bool isSelected = selectedMethod == title;
+
     return GestureDetector(
       onTap: () => setState(() => selectedMethod = title),
       child: Container(
