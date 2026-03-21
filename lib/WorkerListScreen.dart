@@ -88,27 +88,21 @@ class WorkerListScreen extends StatelessWidget {
                           ),
                         ],
                       ),
+                    ),
 
-                      const SizedBox(width: 15),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PaymentOptionPage(),
+                          ),
+                        );
+                      },
 
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(worker['name'],
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold)),
-
-                            Text(worker['category'],
-                                style: const TextStyle(
-                                    color: Colors.white70, fontSize: 12)),
-
-                            Text(worker['location'],
-                                style: const TextStyle(
-                                    color: Colors.white70, fontSize: 12)),
-                          ],
-                        ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF3F51B5),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                       ),
 
                       ElevatedButton(
