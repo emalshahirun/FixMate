@@ -19,3 +19,24 @@ class PaymentService {
           time.trim().isEmpty) {
         throw Exception("All fields are required");
       }
+       const validModes = ["Card", "Cash", "Master card", "Visa"];
+      if (!validModes.contains(paymentMode)) {
+        throw Exception("Invalid payment mode");
+      }
+
+      // Save to Firestore
+      await payments.add({
+        'paymentMode': paymentMode,
+        'amount': parsedAmount,
+        'date': date,
+        'time': time,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+
+      return true;
+    } catch (e) {
+      print("❌ Error saving payment: $e");
+      return false;
+    }
+  }
+}
