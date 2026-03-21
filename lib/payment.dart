@@ -173,19 +173,24 @@ class _PaymentOptionPageState extends State<PaymentOptionPage> {
 
     return GestureDetector(
       onTap: () => setState(() => selectedMethod = title),
-      child: Container(
-        margin: const EdgeInsets.only(top: 10),
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: isSelected ? Colors.green : Colors.grey.shade300,
+      child: Card(
+        elevation: isSelected ? 4 : 1,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(
+            color: isSelected ? Colors.blue : Colors.grey.shade300,
           ),
-          borderRadius: BorderRadius.circular(8),
         ),
         child: ListTile(
-          leading: Icon(icon, color: Colors.black),
-          title: Text(title),
+          leading: Icon(icon, color: Colors.blue),
+          title: Text(
+            title,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
           subtitle: Text(subtitle),
+          trailing: isSelected
+              ? const Icon(Icons.check_circle, color: Colors.green)
+              : const Icon(Icons.arrow_forward_ios, size: 16),
         ),
       ),
     );
