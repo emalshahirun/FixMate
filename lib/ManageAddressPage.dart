@@ -146,8 +146,6 @@ class ManageAddressPage extends StatelessWidget {
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                       ),
                     ),
-
-
                     const SizedBox(height: 20),
                     const Text("Save as", style: TextStyle(color: Colors.grey)),
                     const SizedBox(height: 10),
@@ -157,6 +155,21 @@ class ManageAddressPage extends StatelessWidget {
                         const SizedBox(width: 10),
                         _buildChip("Other", false),
                       ],
+                    ),
+
+                    // ✅ COMMIT 2 added here
+                    const SizedBox(height: 30),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 55,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF1A237E),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        ),
+                        onPressed: () => Navigator.pop(context),
+                        child: const Text("Proceed", style: TextStyle(color: Colors.white, fontSize: 16)),
+                      ),
                     ),
 
                   ],
