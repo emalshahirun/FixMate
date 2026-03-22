@@ -11,54 +11,132 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+
+      // ✅ WHITE APP BAR (FixMate logo bar)
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         leading: const Icon(Icons.menu, color: Colors.black),
-        title: const Text("FixMate", style: TextStyle(color: Colors.black)), // Replaced Image.asset with Text for demo safety
         centerTitle: true,
+        title: const Text(
+          "FixMate",
+          style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+        ),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.storefront_outlined, color: Colors.black)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black)),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.storefront_outlined, color: Colors.black),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black),
+          ),
         ],
       ),
+
+      // ✅ BODY
       body: Column(
         children: [
+          // 🔥 BLACK HEADER (like your image)
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+            decoration: const BoxDecoration(color: Colors.black),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  "My Profile",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 5),
+                Text("Welcome back!", style: TextStyle(color: Colors.white70)),
+              ],
+            ),
+          ),
+
           const SizedBox(height: 20),
+
+          // 👤 PROFILE INFO
           ListTile(
-            leading: const CircleAvatar(radius: 40, backgroundColor: Colors.grey),
-            title: const Text("John Kevin", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            leading: const CircleAvatar(
+              radius: 40,
+              backgroundColor: Colors.grey,
+            ),
+            title: const Text(
+              "John Kevin",
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
             subtitle: const Text("+91 1234567890"),
             trailing: IconButton(
               icon: const Icon(Icons.edit_square, color: Colors.blue),
-              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const EditProfilePage())),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => EditProfilePage()),
+              ),
             ),
           ),
+
           const Divider(height: 40),
 
-          // Updated Menu Items with Navigation
-          _menuItem(context, Icons.location_on_outlined, "Manage Address", const ManageAddressPage()),
-          _menuItem(context, Icons.share_outlined, "Refer & Earn", const AddCreditCardPage()),
-          _menuItem(context, Icons.star_outline, "Rate us", const ContactUsPage()),
-          _menuItem(context, Icons.info_outline, "About FixMate", const PrivacyPolicyPage()),
+          // 📋 MENU ITEMS
+          _menuItem(
+            context,
+            Icons.location_on_outlined,
+            "Manage Address",
+            const ManageAddressPage(),
+          ),
+          _menuItem(
+            context,
+            Icons.share_outlined,
+            "Refer & Earn",
+            const AddCreditCardPage(),
+          ),
+          _menuItem(
+            context,
+            Icons.star_outline,
+            "Rate us",
+            const ContactUsPage(),
+          ),
+          _menuItem(
+            context,
+            Icons.info_outline,
+            "About FixMate",
+            const PrivacyPolicyPage(),
+          ),
 
-          // Logout usually triggers a dialog or a clear-session function rather than just a page
           _menuItem(context, Icons.logout, "Logout", null, isLogout: true),
         ],
       ),
     );
   }
 
-  Widget _menuItem(BuildContext context, IconData icon, String title, Widget? target, {bool isLogout = false}) {
+  Widget _menuItem(
+    BuildContext context,
+    IconData icon,
+    String title,
+    Widget? target, {
+    bool isLogout = false,
+  }) {
     return ListTile(
       leading: Icon(icon, color: isLogout ? Colors.red : Colors.black87),
-      title: Text(title, style: TextStyle(color: isLogout ? Colors.red : Colors.black87)),
+      title: Text(
+        title,
+        style: TextStyle(color: isLogout ? Colors.red : Colors.black87),
+      ),
       trailing: const Icon(Icons.chevron_right),
       onTap: () {
         if (isLogout) {
           _handleLogout(context);
         } else if (target != null) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => target));
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => target),
+          );
         }
       },
     );
