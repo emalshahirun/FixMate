@@ -49,3 +49,24 @@ class PrivacyPolicyPage extends StatelessWidget {
     );
   }
 }
+// lib/pages/privacy_policy_page.dart (updated)
+import 'package:flutter/material.dart';
+import '../widgets/settings_scaffold.dart';
+
+class PrivacyPolicyPage extends StatelessWidget {
+  const PrivacyPolicyPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SettingsScaffold(
+      title: "Privacy Policy",
+      body: const SingleChildScrollView(
+        padding: EdgeInsets.all(20),
+        child: Text(
+          "Privacy Policy for FixMate...\n\nAt FixMate, accessible through our mobile application, one of our top priorities is ensuring the privacy and protection of our users' personal information. This policy explains the types of data collected...",
+          style: TextStyle(height: 1.6, color: Colors.black87),
+        ),
+      ),
+    );
+  }
+}
