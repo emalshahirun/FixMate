@@ -68,3 +68,65 @@ class ContactUsPage extends StatelessWidget {
     );
   }
 }
+
+class DeleteAccountPage extends StatelessWidget {
+  const DeleteAccountPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SettingsScaffold(
+      title: "Delete Account",
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            const Text(
+              "Are you sure you want to delete your account? Deleting your account removes personal information from our database...",
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.grey),
+            ),
+            const SizedBox(height: 40),
+            SizedBox(
+              width: double.infinity,
+              height: 55,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                onPressed: () {},
+                child: const Text("Delete", style: TextStyle(color: Colors.white)),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+Widget _buildTextField(String label, {bool obscure = false, int maxLines = 1}) {
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 15),
+    child: TextField(
+      obscureText: obscure,
+      maxLines: maxLines,
+      decoration: InputDecoration(
+        labelText: label,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+    ),
+  );
+}
+
+Widget _buildBlueButton(String label, VoidCallback onPressed) {
+  return SizedBox(
+    width: double.infinity,
+    height: 55,
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color(0xFF3F51B5),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      onPressed: onPressed,
+      child: Text(label, style: const TextStyle(color: Colors.white, fontSize: 16)),
+    ),
+  );
+}
