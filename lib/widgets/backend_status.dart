@@ -8,6 +8,9 @@ class BackendStatus extends StatefulWidget {
 }
 
 class _BackendStatusState extends State<BackendStatus> {
+      bool _isConnected = false;
+      bool _isChecking = true;
+      String _errorMessage = '';
   @override
   Widget build(BuildContext context) {
     return Container();
