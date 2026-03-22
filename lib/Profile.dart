@@ -132,8 +132,40 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 }
 
-class EditProfilePage extends StatelessWidget {
-  const EditProfilePage({super.key});
+class EditProfilePage extends StatefulWidget {
+  final String name;
+  final String phone;
+
+  const EditProfilePage({super.key, required this.name, required this.phone});
+
+  @override
+  State<EditProfilePage> createState() => _EditProfilePageState();
+}
+
+class _EditProfilePageState extends State<EditProfilePage> {
+  late TextEditingController _nameController;
+  late TextEditingController _phoneController;
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController = TextEditingController(text: widget.name);
+    _phoneController = TextEditingController(text: widget.phone);
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _phoneController.dispose();
+    super.dispose();
+  }
+
+  void _saveProfile() {
+    Navigator.pop(context, {
+      'name': _nameController.text.trim(),
+      'phone': _phoneController.text.trim(),
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -145,22 +177,17 @@ class EditProfilePage extends StatelessWidget {
           children: [
             const CircleAvatar(radius: 50, child: Icon(Icons.camera_alt)),
             const SizedBox(height: 30),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: _nameController,
+              decoration: const InputDecoration(
                 labelText: 'Full Name',
                 hintText: 'John Kevin',
               ),
             ),
             const SizedBox(height: 12),
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'Email',
-                hintText: 'johnkevin787@gmail.com',
-              ),
-            ),
-            const SizedBox(height: 12),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: _phoneController,
+              decoration: const InputDecoration(
                 labelText: 'Mobile Number',
                 hintText: '+91 1234567890',
               ),
@@ -170,7 +197,7 @@ class EditProfilePage extends StatelessWidget {
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: _saveProfile,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue[900],
                   foregroundColor: Colors.white,
@@ -180,6 +207,52 @@ class EditProfilePage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ReferEarnPage extends StatelessWidget {
+  const ReferEarnPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Refer & Earn')),
+      body: const Center(
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Text(
+            'Share your referral code and earn rewards.',
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class RateUsPage extends StatelessWidget {
+  const RateUsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Rate Us')),
+      body: const Center(child: Text('Rate your experience with FixMate.')),
+    );
+  }
+}
+
+class AboutUsPage extends StatelessWidget {
+  const AboutUsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('About Us')),
+      body: const Center(
+        child: Text('FixMate is a top service app for your needs.'),
       ),
     );
   }
