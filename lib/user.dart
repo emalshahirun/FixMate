@@ -292,3 +292,18 @@ Widget buildBlueButton(String label, VoidCallback onPressed) {
     ),
   );
 }
+// lib/widgets/shared_widgets.dart (updated buildBlueButton only)
+Widget buildBlueButton(String label, VoidCallback onPressed) {
+  return SizedBox(
+    width: double.infinity,
+    height: 55,
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color(0xFF3F51B5),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      onPressed: onPressed,
+      child: Text(label, style: const TextStyle(color: Colors.white, fontSize: 16)),
+    ),
+  );
+}
