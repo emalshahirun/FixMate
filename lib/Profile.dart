@@ -124,6 +124,129 @@ class ProfilePage extends StatelessWidget {
 
 // --- Destination Pages ---
 
+class ManageAddressPage extends StatelessWidget {
+  const ManageAddressPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Manage Address")),
+      body: ListView(
+        children: [
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text("Home Address"),
+            subtitle: Text("Edit or remove"),
+            trailing: Icon(Icons.chevron_right),
+          ),
+          ListTile(
+            leading: Icon(Icons.work),
+            title: Text("Office Address"),
+            subtitle: Text("Edit or remove"),
+            trailing: Icon(Icons.chevron_right),
+          ),
+          ListTile(
+            leading: Icon(Icons.add_location),
+            title: Text("Add New Address"),
+            trailing: Icon(Icons.chevron_right),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ----------------------------
+
+class AddCreditCardPage extends StatelessWidget {
+  const AddCreditCardPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Refer & Earn")),
+      body: ListView(
+        children: [
+          ListTile(
+            leading: Icon(Icons.card_giftcard),
+            title: Text("My Referral Code"),
+            subtitle: Text("REF12345"),
+          ),
+          ListTile(
+            leading: Icon(Icons.share),
+            title: Text("Share Code"),
+            trailing: Icon(Icons.chevron_right),
+          ),
+          ListTile(
+            leading: Icon(Icons.wallet),
+            title: Text("My Rewards"),
+            trailing: Icon(Icons.chevron_right),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ----------------------------
+
+class ContactUsPage extends StatelessWidget {
+  const ContactUsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Rate Us")),
+      body: ListView(
+        children: [
+          ListTile(
+            leading: Icon(Icons.star),
+            title: Text("Give Rating"),
+            trailing: Icon(Icons.chevron_right),
+          ),
+          ListTile(
+            leading: Icon(Icons.feedback),
+            title: Text("Write Feedback"),
+            trailing: Icon(Icons.chevron_right),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ----------------------------
+
+class PrivacyPolicyPage extends StatelessWidget {
+  const PrivacyPolicyPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("About FixMate")),
+      body: ListView(
+        children: [
+          ListTile(
+            leading: Icon(Icons.info),
+            title: Text("App Version"),
+            subtitle: Text("1.0.0"),
+          ),
+          ListTile(
+            leading: Icon(Icons.description),
+            title: Text("Terms & Conditions"),
+            trailing: Icon(Icons.chevron_right),
+          ),
+          ListTile(
+            leading: Icon(Icons.privacy_tip),
+            title: Text("Privacy Policy"),
+            trailing: Icon(Icons.chevron_right),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({super.key});
 
