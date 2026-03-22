@@ -70,3 +70,18 @@ class PrivacyPolicyPage extends StatelessWidget {
     );
   }
 }
+// lib/pages/contact_us_page.dart
+import 'package:flutter/material.dart';
+import '../widgets/settings_scaffold.dart';
+
+class ContactUsPage extends StatelessWidget {
+  const ContactUsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const SettingsScaffold(
+      title: "Contact Us",
+      body: SizedBox(),
+    );
+  }
+}
