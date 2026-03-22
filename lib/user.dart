@@ -184,3 +184,18 @@ class ContactUsPage extends StatelessWidget {
     );
   }
 }
+// lib/pages/delete_account_page.dart
+import 'package:flutter/material.dart';
+import '../widgets/settings_scaffold.dart';
+
+class DeleteAccountPage extends StatelessWidget {
+  const DeleteAccountPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const SettingsScaffold(
+      title: "Delete Account",
+      body: SizedBox(),
+    );
+  }
+}
