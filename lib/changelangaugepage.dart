@@ -26,3 +26,12 @@ child: Column(
   ],
 ),
 >>>>>>> f1107a3c5d62d8675135c71bf964e82fbdbf2466
+child: Column(
+  children: [
+    _buildLanguageOption("English", "English", true),
+    _buildLanguageOption("Sinhala", "Sinhala", false),
+    _buildLanguageOption("Tamil", "Tamil", false),
+    const Spacer(),
+    _buildBlueButton("Save", () {}),
+  ],
+),
