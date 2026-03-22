@@ -265,3 +265,30 @@ Widget buildTextField(String label, {bool obscure = false, int maxLines = 1}) {
     ),
   );
 }
+// lib/widgets/shared_widgets.dart (updated)
+import 'package:flutter/material.dart';
+
+Widget buildTextField(String label, {bool obscure = false, int maxLines = 1}) {
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 15),
+    child: TextField(
+      obscureText: obscure,
+      maxLines: maxLines,
+      decoration: InputDecoration(
+        labelText: label,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+    ),
+  );
+}
+
+Widget buildBlueButton(String label, VoidCallback onPressed) {
+  return SizedBox(
+    width: double.infinity,
+    height: 55,
+    child: ElevatedButton(
+      onPressed: onPressed,
+      child: Text(label, style: const TextStyle(color: Colors.white)),
+    ),
+  );
+}
