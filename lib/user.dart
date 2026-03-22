@@ -1,69 +1,25 @@
-class User {
-  final String id;
-  final String name;
-  final String email;
-  final String phone;
-  final String? profileImage;
-  final String? address;
-  final String userType;
-  final DateTime createdAt;
+import 'package:flutter/material.dart';
 
-  User({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.phone,
-    this.profileImage,
-    this.address,
-    required this.userType,
-    required this.createdAt,
-  });
+class SettingsScaffold extends StatelessWidget {
+  final String title;
+  final Widget body;
+  const SettingsScaffold({super.key, required this.title, required this.body});
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      email: json['email'] as String,
-      phone: json['phone'] as String,
-      profileImage: json['profileImage'] as String?,
-      address: json['address'] as String?,
-      userType: json['userType'] as String,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'email': email,
-      'phone': phone,
-      'profileImage': profileImage,
-      'address': address,
-      'userType': userType,
-      'createdAt': createdAt.toIso8601String(),
-    };
-  }
-
-  User copyWith({
-    String? id,
-    String? name,
-    String? email,
-    String? phone,
-    String? profileImage,
-    String? address,
-    String? userType,
-    DateTime? createdAt,
-  }) {
-    return User(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      email: email ?? this.email,
-      phone: phone ?? this.phone,
-      profileImage: profileImage ?? this.profileImage,
-      address: address ?? this.address,
-      userType: userType ?? this.userType,
-      createdAt: createdAt ?? this.createdAt,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new, size: 20),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      ),
+      body: body,
     );
   }
 }
