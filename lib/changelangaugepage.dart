@@ -9,3 +9,16 @@ class ChangeLanguagePage extends StatelessWidget {
     );
   }
 }
+body: Padding(
+  padding: const EdgeInsets.all(20),
+  child: Column(
+    children: [],
+  ),
+),
+child: Column(
+  children: [
+    _buildLanguageOption("English", "English", true),
+    _buildLanguageOption("Sinhala", "Sinhala", false),
+    _buildLanguageOption("Tamil", "Tamil", false),
+  ],
+),
