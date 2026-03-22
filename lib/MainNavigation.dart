@@ -7,7 +7,6 @@ import 'WorkerHome.dart';
 import 'home_page.dart';
 
 class MainNavigation extends StatefulWidget {
-
   final String userType;
 
   const MainNavigation({super.key, required this.userType});
@@ -17,7 +16,6 @@ class MainNavigation extends StatefulWidget {
 }
 
 class _MainNavigationState extends State<MainNavigation> {
-
   int _selectedIndex = 0;
   late List<Widget> _screens;
 
@@ -29,20 +27,20 @@ class _MainNavigationState extends State<MainNavigation> {
       _screens = [
         const WorkerHomeScreen(),
         const WorkerBookingsPage(),
-        const ProfilePage(),
+        ProfilePage(),
         const SettingsScreen(),
       ];
     } else {
       _screens = [
         const CustomerHomeScreen(),
         const BookingsScreen(),
-        const ProfilePage(),
+        ProfilePage(),
         const SettingsScreen(),
       ];
     }
   }
 
-  void _onItemTapped(int index){
+  void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -50,7 +48,6 @@ class _MainNavigationState extends State<MainNavigation> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: _screens[_selectedIndex],
 
@@ -61,27 +58,25 @@ class _MainNavigationState extends State<MainNavigation> {
         unselectedItemColor: Colors.grey,
         type: BottomNavigationBarType.fixed,
         items: const [
-
           BottomNavigationBarItem(
-              icon: Icon(Icons.grid_view_rounded),
-              label: 'Home'
+            icon: Icon(Icons.grid_view_rounded),
+            label: 'Home',
           ),
 
           BottomNavigationBarItem(
-              icon: Icon(Icons.assignment_outlined),
-              label: 'Bookings'
+            icon: Icon(Icons.assignment_outlined),
+            label: 'Bookings',
           ),
 
           BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline),
-              label: 'Profile'
+            icon: Icon(Icons.person_outline),
+            label: 'Profile',
           ),
 
           BottomNavigationBarItem(
-              icon: Icon(Icons.settings_outlined),
-              label: 'Settings'
+            icon: Icon(Icons.settings_outlined),
+            label: 'Settings',
           ),
-
         ],
       ),
     );
