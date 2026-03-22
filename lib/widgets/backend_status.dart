@@ -1,4 +1,6 @@
 class BackendStatus extends StatefulWidget {
+     final bool showText;
+     final bool compact;
   const BackendStatus({super.key});
 
   @override
