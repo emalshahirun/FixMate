@@ -9,3 +9,9 @@ class ChangePasswordPage extends StatelessWidget {
     );
   }
 }
+body: Padding(
+  padding: const EdgeInsets.all(20),
+  child: Column(
+    children: [],
+  ),
+),
