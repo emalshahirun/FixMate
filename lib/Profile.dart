@@ -2,7 +2,6 @@ import 'package:fixmate/settings2,3.dart';
 import 'package:fixmate/settings4,5,6,7.dart';
 import 'package:fixmate/user_selection.dart';
 import 'package:flutter/material.dart';
-import 'Profile2.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -141,137 +140,14 @@ class ProfilePage extends StatelessWidget {
       },
     );
   }
+
   void _handleLogout(BuildContext context) {
-    // pushAndRemoveUntil ensures the user cannot go "back" to the profile
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => const UserSelectionScreen(userType: '',)),
-          (route) => false,
-    );
-  }
-}
-
-// --- Destination Pages ---
-
-class ManageAddressPage extends StatelessWidget {
-  const ManageAddressPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Manage Address")),
-      body: ListView(
-        children: [
-          ListTile(
-            leading: Icon(Icons.home),
-            title: Text("Home Address"),
-            subtitle: Text("Edit or remove"),
-            trailing: Icon(Icons.chevron_right),
-          ),
-          ListTile(
-            leading: Icon(Icons.work),
-            title: Text("Office Address"),
-            subtitle: Text("Edit or remove"),
-            trailing: Icon(Icons.chevron_right),
-          ),
-          ListTile(
-            leading: Icon(Icons.add_location),
-            title: Text("Add New Address"),
-            trailing: Icon(Icons.chevron_right),
-          ),
-        ],
+      MaterialPageRoute(
+        builder: (context) => const UserSelectionScreen(userType: ''),
       ),
-    );
-  }
-}
-
-// ----------------------------
-
-class AddCreditCardPage extends StatelessWidget {
-  const AddCreditCardPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Refer & Earn")),
-      body: ListView(
-        children: [
-          ListTile(
-            leading: Icon(Icons.card_giftcard),
-            title: Text("My Referral Code"),
-            subtitle: Text("REF12345"),
-          ),
-          ListTile(
-            leading: Icon(Icons.share),
-            title: Text("Share Code"),
-            trailing: Icon(Icons.chevron_right),
-          ),
-          ListTile(
-            leading: Icon(Icons.wallet),
-            title: Text("My Rewards"),
-            trailing: Icon(Icons.chevron_right),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// ----------------------------
-
-class ContactUsPage extends StatelessWidget {
-  const ContactUsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Rate Us")),
-      body: ListView(
-        children: [
-          ListTile(
-            leading: Icon(Icons.star),
-            title: Text("Give Rating"),
-            trailing: Icon(Icons.chevron_right),
-          ),
-          ListTile(
-            leading: Icon(Icons.feedback),
-            title: Text("Write Feedback"),
-            trailing: Icon(Icons.chevron_right),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// ----------------------------
-
-class PrivacyPolicyPage extends StatelessWidget {
-  const PrivacyPolicyPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("About FixMate")),
-      body: ListView(
-        children: [
-          ListTile(
-            leading: Icon(Icons.info),
-            title: Text("App Version"),
-            subtitle: Text("1.0.0"),
-          ),
-          ListTile(
-            leading: Icon(Icons.description),
-            title: Text("Terms & Conditions"),
-            trailing: Icon(Icons.chevron_right),
-          ),
-          ListTile(
-            leading: Icon(Icons.privacy_tip),
-            title: Text("Privacy Policy"),
-            trailing: Icon(Icons.chevron_right),
-          ),
-        ],
-      ),
+      (route) => false,
     );
   }
 }
@@ -282,26 +158,46 @@ class EditProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Edit Profile")),
+      appBar: AppBar(title: const Text('Edit Profile')),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             const CircleAvatar(radius: 50, child: Icon(Icons.camera_alt)),
             const SizedBox(height: 30),
-            const TextField(decoration: InputDecoration(labelText: "Full Name", hintText: "John Kevin")),
-            const TextField(decoration: InputDecoration(labelText: "Email", hintText: "johnkevin787@gmail.com")),
-            const TextField(decoration: InputDecoration(labelText: "Mobile Number", hintText: "+91 1234567890")),
+            const TextField(
+              decoration: InputDecoration(
+                labelText: 'Full Name',
+                hintText: 'John Kevin',
+              ),
+            ),
+            const SizedBox(height: 12),
+            const TextField(
+              decoration: InputDecoration(
+                labelText: 'Email',
+                hintText: 'johnkevin787@gmail.com',
+              ),
+            ),
+            const SizedBox(height: 12),
+            const TextField(
+              decoration: InputDecoration(
+                labelText: 'Mobile Number',
+                hintText: '+91 1234567890',
+              ),
+            ),
             const Spacer(),
             SizedBox(
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
                 onPressed: () => Navigator.pop(context),
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue[900], foregroundColor: Colors.white),
-                child: const Text("Proceed"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[900],
+                  foregroundColor: Colors.white,
+                ),
+                child: const Text('Save'),
               ),
-            )
+            ),
           ],
         ),
       ),
