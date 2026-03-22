@@ -235,3 +235,17 @@ class DeleteAccountPage extends StatelessWidget {
     );
   }
 }
+// lib/widgets/shared_widgets.dart (new file)
+import 'package:flutter/material.dart';
+
+Widget buildTextField(String label) {
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 15),
+    child: TextField(
+      decoration: InputDecoration(
+        labelText: label,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+    ),
+  );
+}
