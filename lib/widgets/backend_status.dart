@@ -11,8 +11,15 @@ class _BackendStatusState extends State<BackendStatus> {
       bool _isConnected = false;
       bool _isChecking = true;
       String _errorMessage = '';
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
+
+      @override
+      void initState() {
+         super.initState();
+         _checkConnection();
+      }
+
+      @override
+      Widget build(BuildContext context) {
+        return Container();
+      }
 }
