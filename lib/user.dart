@@ -148,3 +148,39 @@ class ContactUsPage extends StatelessWidget {
     );
   }
 }
+// lib/pages/contact_us_page.dart (updated — full file)
+import 'package:flutter/material.dart';
+import '../widgets/settings_scaffold.dart';
+import '../widgets/shared_widgets.dart';
+
+class ContactUsPage extends StatelessWidget {
+  const ContactUsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SettingsScaffold(
+      title: "Contact Us",
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            const Text("Contact us for complaints",
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 10),
+            const Text(
+              "Address: House# 72, Road# 21, maharagama-1213\nEmail: support@fixmate.com",
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.grey),
+            ),
+            const SizedBox(height: 30),
+            buildTextField("Name"),
+            buildTextField("Email"),
+            buildTextField("Write your text", maxLines: 5),
+            const SizedBox(height: 20),
+            buildBlueButton("Send Message", () {}),
+          ],
+        ),
+      ),
+    );
+  }
+}
