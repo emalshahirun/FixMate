@@ -1,58 +1,43 @@
-import 'package:fixmate/settings2,3.dart';
-import 'package:fixmate/settings4,5,6,7.dart';
+import 'ManageAddressPage.dart';
 import 'package:fixmate/user_selection.dart';
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  String name = "John Kevin";
+  String phone = "+91 1234567890";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
 
-      // ✅ WHITE APP BAR (FixMate logo bar)
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: const Icon(Icons.menu, color: Colors.black),
+        title: const Text("FixMate", style: TextStyle(color: Colors.blue)),
         centerTitle: true,
-        title: const Text(
-          "FixMate",
-          style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.storefront_outlined, color: Colors.black),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black),
-          ),
-        ],
       ),
 
-      // ✅ BODY
       body: Column(
         children: [
-          // 🔥 BLACK HEADER (like your image)
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
-            decoration: const BoxDecoration(color: Colors.black),
-            child: Column(
+            padding: const EdgeInsets.all(20),
+            color: Colors.black,
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   "My Profile",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(color: Colors.white, fontSize: 22),
                 ),
-                SizedBox(height: 5),
                 Text("Welcome back!", style: TextStyle(color: Colors.white70)),
               ],
             ),
@@ -60,54 +45,49 @@ class ProfilePage extends StatelessWidget {
 
           const SizedBox(height: 20),
 
-          // 👤 PROFILE INFO
           ListTile(
-            leading: const CircleAvatar(
-              radius: 40,
-              backgroundColor: Colors.grey,
+            leading: const CircleAvatar(radius: 35),
+            title: Text(
+              name,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            title: const Text(
-              "John Kevin",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-            subtitle: const Text("+91 1234567890"),
+            subtitle: Text(phone),
             trailing: IconButton(
-              icon: const Icon(Icons.edit_square, color: Colors.blue),
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => EditProfilePage()),
-              ),
+              icon: const Icon(Icons.edit, color: Colors.blue),
+              onPressed: () async {
+                final result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => EditProfilePage(name: name, phone: phone),
+                  ),
+                );
+
+                if (result != null) {
+                  setState(() {
+                    name = result['name'];
+                    phone = result['phone'];
+                  });
+                }
+              },
             ),
           ),
 
-          const Divider(height: 40),
+          const Divider(),
 
-          // 📋 MENU ITEMS
           _menuItem(
             context,
-            Icons.location_on_outlined,
+            Icons.location_on,
             "Manage Address",
             const ManageAddressPage(),
           ),
           _menuItem(
             context,
-            Icons.share_outlined,
+            Icons.card_giftcard,
             "Refer & Earn",
-            const AddCreditCardPage(),
+            ReferEarnPage(),
           ),
-          _menuItem(
-            context,
-            Icons.star_outline,
-            "Rate us",
-            const ContactUsPage(),
-          ),
-          _menuItem(
-            context,
-            Icons.info_outline,
-            "About FixMate",
-            const PrivacyPolicyPage(),
-          ),
-
+          _menuItem(context, Icons.star, "Rate Us", RateUsPage()),
+          _menuItem(context, Icons.info, "About Us", AboutUsPage()),
           _menuItem(context, Icons.logout, "Logout", null, isLogout: true),
         ],
       ),
