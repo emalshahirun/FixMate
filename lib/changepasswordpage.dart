@@ -46,3 +46,19 @@ children: [
     ),
   ),
 ],
+const SizedBox(height: 20),
+SizedBox(
+  width: double.infinity,
+  child: ElevatedButton(
+    onPressed: () {},
+    child: const Text("Update Password"),
+  ),
+),
+style: ElevatedButton.styleFrom(
+  backgroundColor: const Color(0xFF3D4BC7),
+  padding: const EdgeInsets.symmetric(vertical: 16),
+),
+child: const Text(
+  "Update Password",
+  style: TextStyle(color: Colors.white),
+),
