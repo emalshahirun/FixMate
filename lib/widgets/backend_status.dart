@@ -28,6 +28,13 @@ class _BackendStatusState extends State<BackendStatus> {
 
       @override
       Widget build(BuildContext context) {
+       if (widget.compact) {
+                return Container(
+                  width: 8,
+                  height: 8,
+                );
+              }
+
         return Container();
       }
 }
