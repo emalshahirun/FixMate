@@ -249,28 +249,144 @@ class ReferEarnPage extends StatelessWidget {
   }
 }
 
-class RateUsPage extends StatelessWidget {
+// ================= RATE US PAGE ===================
+class RateUsPage extends StatefulWidget {
   const RateUsPage({super.key});
+
+  @override
+  State<RateUsPage> createState() => _RateUsPageState();
+}
+
+class _RateUsPageState extends State<RateUsPage> {
+  int rating = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Rate Us')),
-      body: const Center(child: Text('Rate your experience with FixMate.')),
+      appBar: AppBar(title: const Text("Rate Us")),
+      body: Center(
+        child: Container(
+          margin: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(25),
+          decoration: BoxDecoration(
+              gradient: const LinearGradient(colors: [Colors.orange, Colors.red]),
+              borderRadius: BorderRadius.circular(20)),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                "How was your experience?",
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(5, (index) {
+                  return IconButton(
+                    icon: Icon(
+                      Icons.star,
+                      color: index < rating ? Colors.yellow : Colors.white70,
+                      size: 40,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        rating = index + 1;
+                      });
+                    },
+                  );
+                }),
+              ),
+              const SizedBox(width: 20),
+              ElevatedButton(
+                onPressed: rating == 0 ? null : () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Thanks for rating $rating stars!")),
+                  );
+                },
+                child: const Text("Submit"),
+              ),
+              const SizedBox(height: 15),
+              Text(
+                "Rating: $rating Stars",
+                style: const TextStyle(color: Colors.white, fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
 
-class AboutUsPage extends StatelessWidget {
+// ================= ABOUT US PAGE ===================
+class AboutUsPage extends StatefulWidget {
   const AboutUsPage({super.key});
+
+  @override
+  State<AboutUsPage> createState() => _AboutUsPageState();
+}
+
+class _AboutUsPageState extends State<AboutUsPage> {
+  final TextEditingController aboutController = TextEditingController();
+  String savedText = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('About Us')),
-      body: const Center(
-        child: Text('FixMate is a top service app for your needs.'),
+      appBar: AppBar(title: const Text("About Us")),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextField(
+              controller: aboutController,
+              maxLines: 5,
+              decoration: const InputDecoration(
+                labelText: "Write something about us...",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  savedText = aboutController.text.trim();
+                });
+                FocusScope.of(context).unfocus();
+              },
+              child: const Text("Done"),
+            ),
+            const SizedBox(height: 20),
+            if (savedText.isNotEmpty)
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blue),
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.blue[50],
+                ),
+                child: Text(
+                  savedText,
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ),
+          ],
+        ),
       ),
+    );
+  }
+}
+
+// Dummy user selection screen to avoid error on logout
+class UserSelectionScreen extends StatelessWidget {
+  final String userType;
+  const UserSelectionScreen({super.key, required this.userType});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(child: Text('User Selection Screen (userType: $userType)')),
     );
   }
 }
