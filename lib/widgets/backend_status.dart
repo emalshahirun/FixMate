@@ -19,6 +19,10 @@ class _BackendStatusState extends State<BackendStatus> {
       }
 
       Future<void> _checkConnection() async {
+         setState(() {
+              _isChecking = true;
+              _errorMessage = '';
+         })
         final isConnected = await ApiService.checkHealth();
       }
 
