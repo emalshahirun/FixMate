@@ -18,6 +18,10 @@ class _BackendStatusState extends State<BackendStatus> {
          _checkConnection();
       }
 
+      Future<void> _checkConnection() async {
+        final isConnected = await ApiService.checkHealth();
+      }
+
       @override
       Widget build(BuildContext context) {
         return Container();
